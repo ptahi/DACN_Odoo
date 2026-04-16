@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="om_sales.BackendDashboard" owl="1">
+        <div class="o_action_manager" style="overflow-y: auto; height: 100vh;">
+            <div class="container-fluid py-4 custom-dashboard-container">
+
+                <DateFilter
+                    state="state"
+                    onFilterChange.bind="onDateFilterChange"
+                    applyCustomDate.bind="applyCustomDate"/>
+
+                <KpiCard
+                    data="state.dashboard_data"
+                    formatCurrency.bind="formatCurrency"/>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-7">
+                        <RevenueChart
+                            labels="state.dashboard_data.chart_revenue_labels"
+                            data="state.dashboard_data.chart_revenue_data"/>
+                    </div>
+                    <div class="col-md-5">
+                        <OrdersChart
+                            labels="state.dashboard_data.chart_orders_labels"
+                            data="state.dashboard_data.chart_orders_data"/>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <TopProductsTable
+                            items="state.dashboard_data.top_products"
+                            formatCurrency.bind="formatCurrency"/>
+                    </div>
+                    <div class="col-md-6">
+                        <TopCouponsTable
+                            items="state.dashboard_data.top_coupons"
+                            formatCurrency.bind="formatCurrency"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
+

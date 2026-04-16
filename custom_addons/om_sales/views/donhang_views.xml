@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ========================= -->
+    <!-- TREE VIEW (SAFE) -->
+    <!-- ========================= -->
+    <record id="view_sm_shopping_cart_tree" model="ir.ui.view">
+        <field name="name">sm.shopping.cart.tree</field>
+        <field name="model">sm.shopping.cart</field>
+        <field name="arch" type="xml">
+            <tree>
+                <header>
+                    <button name="action_download_consolidated_excel" type="object" string="Tải bảng Excel chuyển khoản" class="btn-primary" display="always"/>
+                </header>
+                <field name="name"/>
+                <field name="customer_name"/>
+                <field name="customer_phone"/>
+                <field name="date_order"/>
+                <field name="payment_type" optional="show"/>
+                <field name="subtotal_price" sum="Tổng cộng" />
+                <field name="discount_amount" sum="Tổng giảm giá" />
+                <field name="total_price" sum="Tổng cộng"/>
+                <field name="state" widget="badge"/>
+                <field name="coupon_ids" widget="many2many_tags" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ========================= -->
+    <!-- KANBAN VIEW -->
+    <!-- ========================= -->
+    <record id="view_sm_shopping_cart_kanban" model="ir.ui.view">
+        <field name="name">sm.shopping.cart.kanban</field>
+        <field name="model">sm.shopping.cart</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" quick_create="false" records_draggable="1" groups_draggable="1" class="o_kanban_mobile">
+<!--    records_draggable="0" groups_draggable="0"   để di chuyển các thành phần bảng kanban         -->
+                <field name="name"/>
+                <field name="customer_name"/>
+                <field name="total_price"/>
+                <field name="state"/>
+                <field name="date_order"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click shadow-sm border-left-lg rounded">
+                            <div class="o_kanban_record_top mb-2">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title text-primary">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <div class="badge badge-pill text-bg-info">
+                                    <field name="total_price" widget="monetary"/>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_body mb-2">
+                                <div class="text-muted">
+                                    <i class="fa fa-user me-1"/> <field name="customer_name"/>
+                                </div>
+                                <div class="text-muted small">
+                                    <i class="fa fa-calendar me-1"/> <field name="date_order"/>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_bottom d-flex justify-content-between align-items-center">
+                                <div class="oe_kanban_bottom_left">
+                                    <field name="state" widget="label_selection" options="{'classes': {'draft': 'default', 'cancel': 'danger', 'done': 'success'}}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ========================= -->
+    <!-- FORM VIEW -->
+    <!-- ========================= -->
+    <record id="view_sm_shopping_cart_form" model="ir.ui.view">
+        <field name="name">sm.shopping.cart.form</field>
+        <field name="model">sm.shopping.cart</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <header>
+                    <button name="action_print_order"
+                            string="In đơn hàng"
+                            type="object"
+                            class="btn-secondary"
+                            icon="fa-print"/>
+
+                    <button name="action_awaiting_confirmation"
+                            string="Chờ xác nhận"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state != 'draft'"/>
+
+                    <button name="action_confirm"
+                            string="Xác nhận"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state != 'awaiting_confirmation'"/>
+
+                    <button name="action_shipping"
+                            string="Giao hàng"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state != 'confirmed'"/>
+
+                    <button name="action_done"
+                            string="Hoàn thành"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state != 'shipping'"/>
+
+                    <button name="action_cancel"
+                            string="Hủy đơn"
+                            type="object"
+                            invisible="state in ['done','cancel']"/>
+
+                    <button name="action_draft"
+                            string="Thiết lập về nháp"
+                            type="object"
+                            invisible="state != 'cancel'"/>
+
+                    <button name="action_return"
+                            string="Khách trả hàng"
+                            type="object"
+                            class="btn-danger"
+                            invisible="state != 'done'"/>
+
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,awaiting_confirmation,confirmed,shipping,done,returned"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object"
+                            name="action_view_pickings"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            invisible="picking_count == 0">
+                            <field name="picking_count" widget="statinfo" string="Phiếu Kho"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group string="Thông tin khách hàng">
+                        <group>
+                            <field name="customer_name"/>
+                            <field name="customer_phone" widget="phone"/>
+                        </group>
+                        <group>
+                            <field name="customer_email" widget="email"/>
+                            <field name="date_order"/>
+                        </group>
+                    </group>
+
+                    <group string="Địa chỉ nhận hàng">
+                        <field name="customer_address"/>
+                    </group>
+
+<!--                    <group string="Mã giảm giá" invisible="not coupon_ids and not coupon_id and discount_amount == 0">-->
+<!--                        <field name="coupon_ids" readonly="1" widget="many2many_tags" options="{'no_create': True}"/>-->
+<!--&lt;!&ndash;                        <field name="coupon_id" column_invisible="1"/>&ndash;&gt;-->
+<!--                        <field name="coupon_id" invisible="1"/>-->
+<!--                        <field name="discount_amount" readonly="1" widget="monetary"/>-->
+<!--                    </group>-->
+
+                    <notebook>
+                        <page string="Sản phẩm đã chọn">
+                            <field name="cart_line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="price_unit"/>
+                                    <field name="lot_names" readonly="1" optional="show"/>
+                                    <field name="price_subtotal" readonly="1"/>
+                                </tree>
+                            </field>
+
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="coupon_ids" readonly="1" widget="many2many_tags" optional="show"/>
+                                <field name="subtotal_price" widget="monetary" readonly="1"/>
+                                <field name="discount_amount" readonly="1"/>
+                                <field name="total_price" class="oe_subtotal_footer_separator" widget="monetary"/>
+                            </group>
+                        </page>
+                        <page string="Mã giảm giá đã áp dụng">
+                            <group string="Mã giảm giá" invisible="not coupon_ids and not coupon_id and discount_amount == 0">
+                        <field name="coupon_ids" readonly="1" widget="many2many_tags" options="{'no_create': True}"/>
+
+<!--                        <field name="coupon_id" column_invisible="1"/>-->
+                        <field name="coupon_id" invisible="1"/>
+                        <field name="discount_amount" readonly="1" widget="monetary"/>
+                         </group>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- ========================= -->
+    <!-- ACTION -->
+    <!-- ========================= -->
+    <record id="action_download_excel_chuyenkhoan_tonghop_server" model="ir.actions.server">
+        <field name="name">Tải Excel tổng hợp chuyển khoản</field>
+        <field name="model_id" ref="model_sm_shopping_cart"/>
+        <field name="state">code</field>
+        <field name="code">action = env['sm.shopping.cart'].action_download_consolidated_excel()</field>
+    </record>
+
+    <record id="action_sm_shopping_cart" model="ir.actions.act_window">
+        <field name="name">Đơn hàng</field>
+        <field name="res_model">sm.shopping.cart</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+</odoo>

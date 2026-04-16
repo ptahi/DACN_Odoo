@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_sm_brand_tree" model="ir.ui.view">
+        <field name="name">sm.brand.tree</field>
+        <field name="model">sm.brand</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sm_brand_form" model="ir.ui.view">
+        <field name="name">sm.brand.form</field>
+        <field name="model">sm.brand</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sm_brand" model="ir.actions.act_window">
+        <field name="name">Hãng sản phẩm</field>
+        <field name="res_model">sm.brand</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

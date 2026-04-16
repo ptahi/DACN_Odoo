@@ -1,0 +1,121 @@
+/* Tổng thể trang Checkout */
+.checkout-page {
+    background-color: #f8f9fa; /* Màu nền nhẹ nhàng */
+    min-height: 80vh;
+}
+
+.checkout-page h1 {
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 10px;
+}
+
+.checkout-page h4 {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+/* Phần bảng giỏ hàng (Bên trái) */
+#checkout-cart {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-page .table {
+    margin-bottom: 0;
+}
+
+.checkout-page .table thead th {
+    border-top: none;
+    border-bottom: 2px solid #eee;
+    color: #888;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.checkout-page .table tbody td {
+    vertical-align: middle;
+    padding: 15px 10px;
+}
+
+#checkout-total {
+    font-size: 1.4rem;
+    color: #d9534f; /* Màu đỏ nổi bật cho tổng tiền */
+    font-weight: bold;
+}
+
+/* Phần Form thông tin (Bên phải) */
+#checkout-form {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #28a745;
+}
+
+.checkout-page .form-label {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.checkout-page .form-control {
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.checkout-page .form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.15);
+}
+
+/* Nút bấm */
+.checkout-page .btn-success {
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    transition: transform 0.2s ease;
+}
+
+.checkout-page .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.checkout-page .btn-outline-secondary {
+    border: none;
+    color: #666;
+    font-size: 0.9rem;
+    display: block;
+    text-align: center;
+}
+
+.checkout-page .btn-outline-secondary:hover {
+    background: transparent;
+    color: #28a745;
+    text-decoration: underline;
+}
+
+/* Hiệu ứng hiển thị giỏ hàng (khi bỏ class d-none) */
+#checkout-cart:not(.d-none) {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+

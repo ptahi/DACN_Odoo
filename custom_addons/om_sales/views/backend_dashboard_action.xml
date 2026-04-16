@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Client Action for OWL Dashboard -->
+        <record id="action_backend_dashboard_owl" model="ir.actions.client">
+            <field name="name">Dashboard Thống Kê</field>
+            <field name="tag">om_sales.backend_dashboard</field>
+        </record>
+
+        <!-- Menu Item for the new Dashboard -->
+        <menuitem
+            id="menu_sm_dashboard_owl"
+            name="Dashboard"
+            parent="menu_sm_root"
+            action="action_backend_dashboard_owl"
+            sequence="5"/>
+    </data>
+</odoo>

@@ -1,0 +1,124 @@
+/* Dashboard Container & Typography */
+.custom-dashboard-container {
+    background-color: #f8f9fc !important;
+    font-family: 'Inter', 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Typography styles */
+.dashboard-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Minimalist pill buttons */
+.filter-pills .btn {
+    border: none;
+    background-color: transparent;
+    color: #6b7280;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    margin-left: 0.25rem;
+}
+.filter-pills .btn:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+.filter-pills .btn.active {
+    background-color: #ffffff;
+    color: #111827;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Cards Design */
+.dash-card {
+    background-color: #ffffff;
+    border: none !important;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease-in-out;
+}
+.dash-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* KPI Card specifics */
+.kpi-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+.kpi-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+}
+.kpi-stat {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.stat-up { color: #10b981; }
+.stat-down { color: #ef4444; }
+
+/* Icon wrappers */
+.icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-box-primary { background-color: #e0e7ff; color: #4f46e5; }
+.icon-box-success { background-color: #dcfce7; color: #16a34a; }
+.icon-box-warning { background-color: #fef3c7; color: #d97706; }
+.icon-box-info { background-color: #cffafe; color: #0891b2; }
+
+/* Charts */
+.chart-header-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+}
+.chart-header-subtitle {
+     font-size: 0.8rem;
+     color: #6b7280;
+}
+
+/* Lists and Tables */
+.top-list-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #2563eb;
+    text-decoration: none;
+}
+.top-list-link:hover { text-decoration: underline; }
+
+.dash-table th {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #9ca3af;
+    text-transform: uppercase;
+    border-top: none;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.75rem;
+    background-color: transparent !important;
+}
+.dash-table td {
+    border-bottom: 1px solid #f3f4f6;
+    padding: 1rem 0.5rem;
+    vertical-align: middle;
+}
+.dash-table tr:last-child td { border-bottom: none; }
+.prod-name { font-weight: 600; color: #1f2937; font-size: 0.9rem;}
+.prod-sku { font-size: 0.75rem; color: #9ca3af; }
+.badge-soft-primary {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+    border-radius: 4px;
+}
+

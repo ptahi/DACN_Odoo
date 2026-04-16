@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- ========================= -->
+    <!-- QWEB TEMPLATE PDF -->
+    <!-- ========================= -->
+    <template id="report_stock_picking_document">
+        <t t-call="web.external_layout">
+            <main>
+                <t t-foreach="docs" t-as="o">
+                    <div class="page"
+                         style="font-family: 'DejaVu Sans', sans-serif;
+                                font-size: 13px;
+                                color: #212529;">
+
+                        <!-- TIÊU ĐỀ -->
+                        <h2 style="text-align:center;
+                                   font-weight:700;
+                                   letter-spacing:1px;
+                                   margin-bottom:20px;">
+                            <t t-if="o.picking_type == 'in'">PHIẾU NHẬP KHO</t>
+                            <t t-else="">PHIẾU XUẤT KHO / GIAO HÀNG</t>
+                        </h2>
+
+                        <p style="text-align:center;
+                                  font-size:14px;
+                                  margin-top:-10px;">
+                            Số phiếu: <strong><t t-esc="o.name"/></strong>
+                        </p>
+
+                        <hr style="margin: 20px 0;"/>
+
+                        <!-- THÔNG TIN CHUNG -->
+                        <div style="line-height:1.7;">
+                            <p>
+                                <strong style="min-width:140px; display:inline-block;">Đối tác / Khách hàng:</strong>
+                                <t t-esc="o.customer_name or 'N/A'"/>
+                            </p>
+                            <p>
+                                <strong style="min-width:140px; display:inline-block;">Đơn hàng tham chiếu:</strong>
+                                <t t-esc="o.cart_id.name if o.cart_id else 'N/A'"/>
+                            </p>
+                            <p>
+                                <strong style="min-width:140px; display:inline-block;">Từ vị trí:</strong>
+                                <t t-esc="o.location_id.name"/>
+                            </p>
+                            <p>
+                                <strong style="min-width:140px; display:inline-block;">Tới vị trí:</strong>
+                                <t t-esc="o.location_dest_id.name"/>
+                            </p>
+                            <p>
+                                <strong style="min-width:140px; display:inline-block;">Ngày hoàn thành:</strong>
+                                <t t-esc="o.date_done and o.date_done.strftime('%d/%m/%Y %H:%M') or 'Chưa hoàn thành'"/>
+                            </p>
+                            <p>
+                                <strong style="min-width:140px; display:inline-block;">Trạng thái:</strong>
+                                <t t-if="o.state == 'draft'">Nháp</t>
+                                <t t-elif="o.state == 'ready'">Chờ xử lý</t>
+                                <t t-elif="o.state == 'done'">Hoàn thành</t>
+                                <t t-elif="o.state == 'cancel'">Đã hủy</t>
+                            </p>
+                        </div>
+                        <br/>
+
+                        <!-- BẢNG CHI TIẾT SẢN PHẨM -->
+                        <h5 style="font-weight:600; margin-bottom: 10px;">Chi tiết hàng hóa:</h5>
+                        <table class="table table-sm table-bordered" style="font-size:13px; width:100%;">
+                            <thead style="background-color:#f1f3f5;">
+                                <tr>
+                                    <th class="text-center" style="width:10%; font-weight:600;">STT</th>
+                                    <th style="width:40%; font-weight:600;">Sản phẩm</th>
+                                    <th style="width:30%; font-weight:600;">Số Serial</th>
+                                    <th class="text-center" style="width:20%; font-weight:600;">Số lượng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="line_count" t-value="0"/>
+                                <t t-foreach="o.move_ids" t-as="move">
+                                    <t t-set="line_count" t-value="line_count + 1"/>
+                                    <tr>
+                                        <td class="text-center"><t t-esc="line_count"/></td>
+                                        <td><t t-esc="move.product_id.name"/></td>
+                                        <td>
+                                            <t t-foreach="move.move_line_ids" t-as="m_line">
+                                                <t t-if="m_line.lot_id">
+                                                    <div><span t-esc="m_line.lot_id.name"/></div>
+                                                </t>
+                                                <t t-elif="m_line.lot_name">
+                                                    <div><span t-esc="m_line.lot_name"/></div>
+                                                </t>
+                                            </t>
+                                        </td>
+                                        <td class="text-center"><t t-esc="move.quantity"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <br/>
+
+                        <!-- FOOTER KÝ NHẬN -->
+                        <div style="margin-top: 50px;">
+                            <table style="width:100%; text-align:center; border:none;">
+                                <tr>
+                                    <td style="width:33%;">
+                                        <strong>Người lập phiếu</strong>
+                                        <br/><br/><br/><br/>
+                                        <p>(Ký, họ tên)</p>
+                                    </td>
+                                    <td style="width:33%;">
+                                        <strong>Người giao hàng</strong>
+                                        <br/><br/><br/><br/>
+                                        <p>(Ký, họ tên)</p>
+                                    </td>
+                                    <td style="width:33%;">
+                                        <strong>Người nhận hàng</strong>
+                                        <br/><br/><br/><br/>
+                                        <p>(Ký, họ tên)</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </main>
+        </t>
+    </template>
+
+    <!-- ========================= -->
+    <!-- REPORT ACTION -->
+    <!-- ========================= -->
+    <record id="action_report_stock_picking" model="ir.actions.report">
+        <field name="name">In Phiếu Kho</field>
+        <field name="model">sm.stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">om_sales.report_stock_picking_document</field>
+        <field name="report_file">om_sales.report_stock_picking_document</field>
+        <field name="print_report_name">'PhieuKho_%s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_sm_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

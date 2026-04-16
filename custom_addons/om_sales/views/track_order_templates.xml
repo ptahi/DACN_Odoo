@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- ========================================================= -->
+  <!-- FORM TRA CỨU ĐƠN HÀNG -->
+  <!-- URL: /track-order -->
+  <!-- ========================================================= -->
+  <template id="track_order_form" name="Track Order Form">
+    <t t-call="om_sales.website_layout">
+<!--      <a class="navbar-brand fw-bold fs-3 text-primary" href="/shop">-->
+<!--                                <i class="fa fa-laptop me-2"></i>ThaisStore-->
+<!--                            </a>-->
+      <div class="container mt-5 mb-5" style="max-width: 600px;">
+        <h2 class="text-center mb-4">Theo dõi đơn hàng</h2>
+
+        <form action="/track-order/result" method="post" class="border p-4 rounded">
+
+          <!-- 🔴 CSRF TOKEN (BẮT BUỘC) -->
+          <input type="hidden"
+                 name="csrf_token"
+                 t-att-value="request.csrf_token()"/>
+
+          <div class="form-group mb-3">
+            <label for="order_code">Mã đơn hàng</label>
+            <input type="text"
+                   id="order_code"
+                   name="order_code"
+                   class="form-control"
+                   placeholder="Ví dụ: GH0001"
+                   required="required"/>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="phone">Số điện thoại</label>
+            <input type="text"
+                   id="phone"
+                   name="phone"
+                   class="form-control"
+                   placeholder="Số điện thoại đặt hàng"
+                   required="required"/>
+          </div>
+
+          <div class="d-flex justify-content-center gap-4 mt-4">
+    <button type="submit" class="btn btn-primary px-4">
+        Tra cứu đơn hàng
+    </button>
+
+    <a href="/shop" class="btn btn-outline-secondary px-4">
+        <i class="fa fa-arrow-left"></i> Quay lại trang chính
+    </a>
+</div>
+
+        </form>
+      </div>
+    </t>
+  </template>
+
+  <!-- ========================================================= -->
+  <!-- KẾT QUẢ TRA CỨU ĐƠN HÀNG -->
+  <!-- URL: /track-order/result -->
+  <!-- ========================================================= -->
+  <template id="track_order_result" name="Track Order Result">
+    <t t-call="om_sales.website_layout">
+      <div class="container mt-5 mb-5" style="max-width: 700px;">
+        <h2 class="text-center mb-4">Kết quả tra cứu đơn hàng</h2>
+
+        <!-- ======= TÌM THẤY ĐƠN HÀNG ======= -->
+        <t t-if="order">
+          <div class="card">
+            <div class="card-body">
+              <p><b>Mã đơn hàng:</b> <t t-esc="order.name"/></p>
+              <p><b>Khách hàng:</b> <t t-esc="order.customer_name"/></p>
+              <p><b>Số điện thoại:</b> <t t-esc="order.customer_phone"/></p>
+              <p><b>Ngày đặt:</b><span t-field="order.date_order" t-options="{'format': 'dd/MM/yyyy'}"/></p>
+              <p><b>Tổng tiền:</b> <t t-esc="'{:,.0f} '.format(order.total_price)"/> VNĐ</p>
+
+
+              <hr/>
+
+              <p><b>Trạng thái đơn hàng:</b></p>
+              <t t-if="order.state == 'awaiting_confirmation'">
+                <span class="badge bg-warning fs-6">Chờ xác nhận</span>
+              </t>
+
+              <t t-if="order.state == 'confirmed'">
+                <span class="badge bg-warning fs-6">Đã xác nhận</span>
+              </t>
+
+              <t t-if="order.state == 'shipping'">
+                <span class="badge bg-info fs-6">Đang giao hàng</span>
+              </t>
+
+              <t t-if="order.state == 'done'">
+                <span class="badge bg-success fs-6">Hoàn thành</span>
+              </t>
+
+              <t t-if="order.state == 'draft'">
+                <span class="badge bg-secondary fs-6">Đang xử lý</span>
+              </t>
+
+              <t t-if="order.state == 'cancel'">
+                <span class="badge bg-danger fs-6">Đã hủy</span>
+              </t>
+
+              <hr/>
+
+              <p><b>Danh sách sản phẩm:</b></p>
+              <ul>
+                <t t-foreach="order.cart_line_ids" t-as="line">
+                  <li>
+                    <t t-esc="line.product_id.name"/> –
+                    Số lượng: <t t-esc="line.quantity"/> –
+                    Giá bán: <t t-esc="'{:,.0f} '.format(line.price_subtotal)"/> VNĐ
+
+                  </li>
+                </t>
+              </ul>
+            </div>
+          </div>
+        </t>
+
+        <!-- ======= KHÔNG TÌM THẤY ĐƠN ======= -->
+        <t t-else="">
+          <div class="alert alert-danger text-center">
+            Không tìm thấy đơn hàng.<br/>
+            Vui lòng kiểm tra lại <b>mã đơn hàng</b> và <b>số điện thoại</b>.
+          </div>
+        </t>
+
+        <div class="text-center mt-4">
+          <a href="/track-order" class="btn btn-secondary">
+            Tra cứu đơn khác
+          </a>
+        </div>
+            <div class="mt-3 text-center">
+    <a href="/shop" class="btn btn-outline-secondary">
+        <i class="fa fa-arrow-left"></i> Tiếp tục mua hàng
+    </a>
+</div>
+      </div>
+    </t>
+  </template>
+
+</odoo>

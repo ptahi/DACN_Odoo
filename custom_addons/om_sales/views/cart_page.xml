@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="cart_page" name="Cart Page">
+        <t t-call="om_sales.website_layout">
+            <div class="container my-5 js-cart-page">
+
+                <h2 class="mb-4">
+                    <i class="fa fa-shopping-cart"></i> Giỏ hàng của bạn
+                </h2>
+
+                <!-- EMPTY STATE -->
+                <div id="cart-empty" class="text-center py-5">
+                    <i class="fa fa-shopping-cart fa-5x text-muted mb-3"></i>
+                    <h4>Giỏ hàng trống</h4>
+                    <p class="text-muted">Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                    <a href="/shop" class="btn btn-primary mt-3">
+                        <i class="fa fa-shopping-bag"></i> Mua sắm ngay
+                    </a>
+                </div>
+
+                <!-- CART CONTENT -->
+                <div id="cart-content" style="display:none;">
+                    <div class="row">
+                        <!-- LEFT -->
+                        <div class="col-lg-8">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th style="width: 60%;">Sản phẩm</th>
+                                                <th class="text-center" style="width: 15%;">Số lượng</th>
+                                                <th class="text-end" style="width: 15%;">Giá</th>
+                                                <th style="width: 10%;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="cart-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <a href="/shop" class="btn btn-outline-secondary">
+                                    <i class="fa fa-arrow-left"></i> Tiếp tục mua sắm
+                                </a>
+                                <button type="button" class="btn btn-outline-danger js-clear-cart">
+                                    <i class="fa fa-trash"></i> Xóa giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT -->
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3">Tóm tắt đơn hàng</h5>
+
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Tạm tính:</span>
+                                        <strong id="cart-subtotal">0đ</strong>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Phí vận chuyển:</span>
+                                        <span class="text-muted">Miễn phí</span>
+                                    </div>
+
+                                    <hr/>
+
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <h5 class="mb-0">Tổng cộng:</h5>
+                                        <h5 class="mb-0 text-primary" id="cart-total">0đ</h5>
+                                    </div>
+
+                                    <!-- ✅ NÚT THANH TOÁN – KHÔNG onclick -->
+                                    <div class="js-cart-page"></div>
+
+<button class="btn btn-primary btn-checkout">
+    Thanh toán
+</button>
+
+                                    <div class="text-center mt-3">
+                                        <small class="text-muted">
+                                            <i class="fa fa-lock"></i> Thanh toán an toàn
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </t>
+    </template>
+
+    <!-- TEMPLATE DÒNG GIỎ HÀNG -->
+    <template id="cart_line_template" name="Cart Line Item Template">
+        <tr class="cart-line" data-product-id="">
+            <td>
+                <div class="d-flex align-items-center">
+                    <img src=""
+                         alt=""
+                         class="cart-item-image me-3"
+                         style="width: 80px; height: 80px; object-fit: cover;"/>
+                    <div>
+                        <h6 class="mb-0 cart-item-name"></h6>
+                        <small class="text-muted">
+                            Mã SP: <span class="cart-item-id"></span>
+                        </small>
+                    </div>
+                </div>
+            </td>
+
+            <td class="text-center">
+                <div class="input-group d-inline-flex" style="width: 160px;">
+                    <button class="btn btn-outline-secondary js-qty-minus" type="button">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <input type="number"
+                           class="form-control text-center js-qty-input"
+                           style="min-width: 60px;"
+                           value="1"
+                           min="1"/>
+                    <button class="btn btn-outline-secondary js-qty-plus" type="button">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </td>
+
+            <td class="text-end">
+                <span class="cart-item-price"></span>
+            </td>
+
+            <td class="text-center">
+                <button type="button"
+                        class="btn btn-sm btn-outline-danger js-remove-item">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </template>
+</odoo>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)http://localhost:8069/web#active_id=242&cids=1&menu_id=266 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Odoo - In đơn hàng</title>
+        <link type="image/x-icon" rel="shortcut icon" href="http://localhost:8069/web/static/img/favicon.ico">
+        <script id="web.layout.odooscript" type="text/javascript">
+            var odoo = {
+                csrf_token: "0edeae3a1d3407c3137a83c63804a8a64ae954e3o1801714483",
+                debug: "1",
+            };
+        </script>
+        
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+                <meta name="theme-color" content="#71639e">
+                <link rel="manifest" href="http://localhost:8069/web/manifest.webmanifest" crossorigin="use-credentials">
+                <link rel="apple-touch-icon" href="http://localhost:8069/web/static/img/odoo-icon-ios.png">
+                <script type="text/javascript">
+                    // Block to avoid leaking variables in the script scope
+                    {
+                        odoo.__session_info__ = {"uid": 2, "is_system": true, "is_admin": true, "is_public": false, "is_internal_user": true, "user_context": {"lang": "en_US", "tz": "Europe/Brussels", "uid": 2}, "db": "dcv17", "user_settings": {"id": 1, "user_id": {"id": 2}, "is_discuss_sidebar_category_channel_open": true, "is_discuss_sidebar_category_chat_open": true, "push_to_talk_key": false, "use_push_to_talk": false, "voice_active_duration": 200, "volume_settings_ids": [["ADD", []]]}, "server_version": "17.0", "server_version_info": [17, 0, 0, "final", 0, ""], "support_url": "https://www.odoo.com/buy", "name": "Mitchell Admin", "username": "admin", "partner_display_name": "YourCompany, Mitchell Admin", "partner_id": 3, "web.base.url": "http://localhost:8069", "active_ids_limit": 20000, "profile_session": null, "profile_collectors": null, "profile_params": null, "max_file_upload_size": 134217728, "home_action_id": false, "cache_hashes": {"translations": "0909ffc104f11d83d5c6646b17eeb07f5ef77d6c", "load_menus": "9a4577e66ebe32867be608d836abd668b3fbcbbe41cd44cefd0c0e7061410eb5"}, "currencies": {"1": {"symbol": "$", "position": "before", "digits": [69, 2]}}, "bundle_params": {"lang": "en_US", "debug": "1"}, "user_companies": {"current_company": 1, "allowed_companies": {"2": {"id": 2, "name": "My Company (Chicago)", "sequence": 10, "child_ids": [], "parent_id": false}, "1": {"id": 1, "name": "My Company (San Francisco)", "sequence": 0, "child_ids": [], "parent_id": false}}, "disallowed_ancestor_companies": {}}, "show_effect": true, "display_switch_company_menu": true, "user_id": [2], "max_time_between_keys_in_ms": 100, "websocket_worker_version": "17.0-3", "web_tours": [], "tour_disable": true, "notification_type": "email", "odoobot_initialized": true, "iap_company_enrich": false, "is_quick_edit_mode_enabled": false};
+                        const { user_context,  cache_hashes } = odoo.__session_info__;
+                        const lang = new URLSearchParams(document.location.search).get("lang");
+                        let menuURL = `/web/webclient/load_menus/${cache_hashes.load_menus}`;
+                        if (lang) {
+                            user_context.lang = lang;
+                            menuURL += `?lang=${lang}`
+                        }
+                        odoo.reloadMenus = () => fetch(menuURL).then(res => res.json());
+                        odoo.loadMenusPromise = odoo.reloadMenus();
+                        // Prefetch translations to speedup webclient. This is done in JS because link rel="prefetch"
+                        // is not yet supported on safari.
+                        fetch(`/web/webclient/translations/${cache_hashes.translations}?lang=${user_context.lang}`);
+                    }
+                </script>
+                    <link type="text/css" rel="stylesheet" href="./Odoo - In đơn hàng_files/web.assets_web.min.css">
+        <script type="text/javascript" src="./Odoo - In đơn hàng_files/web.assets_web.min.js.tải xuống" onerror="__odooAssetError=1"></script><meta name="chrome" content="nointentdetection">
+            
+    <script src="chrome-extension://hmdmhilocobgohohpdpolmibjklfgkbi/pageScript.js"></script><style>.--savior-overlay-transform-reset {
+  transform: none !important;
+}
+.--savior-overlay-z-index-top {
+  z-index: 2147483643 !important;
+}
+.--savior-overlay-position-relative {
+  position: relative;
+}
+.--savior-overlay-position-static {
+  position: static !important;
+}
+.--savior-overlay-overflow-hidden {
+  overflow: hidden !important;
+}
+.--savior-overlay-overflow-x-visible {
+  overflow-x: visible !important;
+}
+.--savior-overlay-overflow-y-visible {
+  overflow-y: visible !important;
+}
+.--savior-overlay-z-index-reset {
+  z-index: auto !important;
+}
+.--savior-overlay-display-none {
+  display: none !important;
+}
+.--savior-overlay-clearfix {
+  clear: both;
+}
+.--savior-overlay-reset-filter {
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+.--savior-tooltip-host {
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+}
+/*Override css styles for Twitch.tv*/
+main.--savior-overlay-z-index-reset {
+  z-index: auto !important;
+}
+.modal__backdrop.--savior-overlay-z-index-reset {
+  position: static !important;
+}
+main.--savior-overlay-z-index-top {
+  z-index: auto !important;
+}
+main.--savior-overlay-z-index-top .channel-root__player-container + div,
+main.--savior-overlay-z-index-top .video-player-hosting-ui__container + div {
+  opacity: 0.1;
+}
+/*Dirty hack for facebook big video page e.g: https://www.facebook.com/abc/videos/...*/
+.--savior-backdrop {
+  position: fixed !important;
+  z-index: 2147483642 !important;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw !important;
+  background-color: rgba(0,0,0,0.9);
+}
+.--savior-overlay-twitter-video-player {
+  position: fixed;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+}
+.--savior-overlay-z-index-reset [class*="DivSideNavContainer"],
+.--savior-overlay-z-index-reset [class*="DivHeaderContainer"],
+.--savior-overlay-z-index-reset [class*="DivBottomContainer"],
+.--savior-overlay-z-index-reset [class*="DivCategoryListWrapper"],
+.--savior-overlay-z-index-reset [data-testid="sidebarColumn"],
+.--savior-overlay-z-index-reset header[role="banner"],
+.--savior-overlay-z-index-reset [data-testid="cellInnerDiv"]:not(.--savior-overlay-z-index-reset),
+.--savior-overlay-z-index-reset [aria-label="Home timeline"]>div:first-child,
+.--savior-overlay-z-index-reset [aria-label="Home timeline"]>div:nth-child(3) {
+  z-index: -1 !important;
+}
+.--savior-overlay-z-index-reset [data-testid="cellInnerDiv"] .--savior-backdrop+div {
+  z-index: 2147483643 !important;
+}
+.--savior-overlay-z-index-reset [data-testid="primaryColumn"]>[aria-label="Home timeline"] {
+  z-index: 0 !important;
+}
+.--savior-overlay-z-index-reset#mtLayer,
+.--savior-overlay-z-index-reset.media-layer {
+  z-index: 3000 !important;
+}
+.--savior-overlay-position-relative [class*="SecBar_secBar_"],
+.--savior-overlay-position-relative .woo-box-flex [class*="Frame_top_"] {
+  z-index: 0 !important;
+}
+.--savior-overlay-position-relative .vue-recycle-scroller__item-view:not(.--savior-overlay-z-index-reset),
+.--savior-overlay-position-relative .woo-panel-main[class*="BackTop_main_"],
+.--savior-overlay-position-relative [class*="Main_side_"] {
+  z-index: -1 !important;
+}
+/* Fix conflict css with zingmp3 */
+.zm-video-modal.--savior-overlay-z-index-reset {
+  position: absolute;
+}
+/* Dirty hack for xvideos99 */
+#page #main.--savior-overlay-z-index-reset {
+  z-index: auto !important;
+}
+/* Overlay for ok.ru */
+#vp_w.--savior-overlay-z-index-reset.media-layer.media-layer__video {
+  overflow-y: hidden;
+  z-index: 2147483643 !important;
+}
+/* Fix missing controller for tv.naver.com */
+.--savior-overlay-z-index-top.rmc_controller,
+.--savior-overlay-z-index-top.rmc_setting_intro,
+.--savior-overlay-z-index-top.rmc_highlight,
+.--savior-overlay-z-index-top.rmc_control_settings {
+  z-index: 2147483644 !important;
+}
+/* Dirty hack for douyi.com */
+.swiper-wrapper.--savior-overlay-z-index-reset .swiper-slide:not(.swiper-slide-active),
+.swiper-wrapper.--savior-overlay-transform-reset .swiper-slide:not(.swiper-slide-active) {
+  display: none;
+}
+.videoWrap + div > div {
+  pointer-events: unset;
+}
+/* Dirty hack for fpt.ai */
+.mfp-wrap.--savior-overlay-z-index-top {
+  position: relative;
+}
+.mfp-wrap.--savior-overlay-z-index-top .mfp-close {
+  display: none;
+}
+.mfp-wrap.--savior-overlay-z-index-top .mfp-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+section.--savior-overlay-z-index-reset>main[role="main"].--savior-overlay-z-index-reset + nav {
+  z-index: -1 !important;
+}
+section.--savior-overlay-z-index-reset>main[role="main"].--savior-overlay-z-index-reset section.--savior-overlay-z-index-reset div.--savior-overlay-z-index-reset ~ div {
+  position: relative;
+}
+.watching-movie #video-player.--savior-overlay-z-index-top {
+  z-index: 2147483644 !important;
+}
+div[class^="tiktok"].--savior-overlay-z-index-reset {
+  z-index: 2147483644 !important;
+}
+.--savior-lightoff-fix section:not(:has([class*="--savior-overlay-"])),
+.--savior-lightoff-fix section.section_video ~ section {
+  z-index: -1;
+  position: relative;
+}
+.--savior-lightoff-fix header,
+.--savior-lightoff-fix footer,
+.--savior-lightoff-fix .top-header,
+.--savior-lightoff-fix .swiper-container,
+.--savior-lightoff-fix #to_top,
+.--savior-lightoff-fix #button-adblock {
+  z-index: -1 !important;
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+</style></head>
+    <body class="o_web_client" data-odoo="new" data-odoo-debug-mode="">
+        
+        
+    
+<header class="o_navbar"><nav class="o_main_navbar" data-command-category="disabled"><div class="o-dropdown dropdown o_navbar_apps_menu o-dropdown--no-caret"><button type="button" class="dropdown-toggle" title="Home Menu" data-hotkey="h" tabindex="0" aria-expanded="false"><i class="oi oi-apps"></i></button></div><a class="dropdown-item o_menu_brand d-none d-md-flex" role="menuitem" tabindex="0" href="http://localhost:8069/web#menu_id=224&amp;action=335" data-menu-xmlid="om_sales.menu_sm_root" data-section="224">Mini Sales Management</a><div class="o_menu_sections d-none d-md-flex flex-grow-1 flex-shrink-1 w-0" role="menu"><div class="o-dropdown dropdown o-dropdown--no-caret"><button type="button" class="dropdown-toggle" data-hotkey="1" tabindex="0" aria-expanded="false" data-menu-xmlid="om_sales.menu_sm_product"><span data-section="225">Sản phẩm</span></button></div><div class="o-dropdown dropdown o-dropdown--no-caret"><button type="button" class="dropdown-toggle" data-hotkey="2" tabindex="0" aria-expanded="false" data-menu-xmlid="om_sales.menu_sm_khachhang"><span data-section="229">Khách hàng</span></button></div><a class="dropdown-item o_nav_entry" role="menuitem" tabindex="0" href="http://localhost:8069/web#menu_id=240&amp;action=345" data-hotkey="3" data-menu-xmlid="om_sales.menu_sm_contact" data-section="240">Liên hệ</a><a class="dropdown-item o_nav_entry" role="menuitem" tabindex="0" href="http://localhost:8069/web#menu_id=266&amp;action=370" data-hotkey="4" data-menu-xmlid="om_sales.menu_sm_shopping_cart" data-section="266">Đơn hàng </a></div><div class="o_menu_systray d-flex flex-shrink-0 ms-auto" role="menu"><div></div><div class="dropdown"></div><div></div><div class="o-dropdown dropdown o-mail-DiscussSystray-class o-dropdown--no-caret"><button type="button" class="dropdown-toggle" tabindex="0" aria-expanded="false"><i class="fa fa-lg fa-comments" role="img" aria-label="Messages"></i><span class="o-mail-MessagingMenu-counter badge rounded-pill">6</span></button></div><div></div><div class="o-dropdown dropdown o-mail-DiscussSystray-class o-dropdown--no-caret"><button type="button" class="dropdown-toggle" tabindex="0" aria-expanded="false"><i class="fa fa-lg fa-clock-o" role="img" aria-label="Activities"></i><span class="o-mail-ActivityMenu-counter badge rounded-pill">8</span></button></div><div></div><div class="o-dropdown dropdown o_switch_company_menu d-none d-md-block o-dropdown--no-caret"><button type="button" class="dropdown-toggle" tabindex="0" aria-expanded="false"><i class="fa fa-building d-lg-none"></i><span class="oe_topbar_name d-none d-lg-block">My Company (San Francisco)</span></button></div><div></div><div><button class="o_mobile_menu_toggle o_nav_entry o-no-caret d-md-none border-0 pe-3" title="Toggle menu" aria-label="Toggle menu"><i class="oi oi-panel-right"></i></button></div><div></div><div class="o-dropdown dropdown o_user_menu d-none d-md-block pe-0 o-dropdown--no-caret"><button type="button" class="dropdown-toggle py-1 py-lg-0" tabindex="0" aria-expanded="false"><img class="o_avatar o_user_avatar rounded" alt="User" src="./Odoo - In đơn hàng_files/Mitchell Admin.png"><small class="oe_topbar_name d-none ms-2 text-start smaller lh-1 text-truncate" style="max-width: 200px">Mitchell Admin<mark class="d-block font-monospace text-truncate"><i class="fa fa-database oi-small me-1"></i>dcv17</mark></small></button></div></div></nav></header><div class="o_action_manager"><div class="o_action"><div class="o_control_panel d-flex flex-column gap-3 gap-lg-1 px-3 pt-2 pb-3" data-command-category="actions"><div class="o_control_panel_main d-flex flex-wrap flex-lg-nowrap justify-content-between align-items-lg-start gap-3 flex-grow-1"><div class="o_control_panel_breadcrumbs d-flex align-items-center gap-1 order-0 h-lg-100"><div class="o_control_panel_main_buttons d-flex gap-1 d-empty-none d-print-none"><div class="d-xl-none o_control_panel_collapsed_create"><button type="button" class="btn btn-primary" title="Print">Print</button><button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split o_control_panel_collapsed_create d-none" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">Toggle Dropdown</span></button><ul class="dropdown-menu o_control_panel_collapsed_create d-none"></ul></div><div class="d-none d-xl-inline-flex gap-1"><button type="button" class="btn btn-primary" title="Print">Print</button></div></div><div class="o_breadcrumb d-flex flex-row flex-md-column align-self-stretch justify-content-between min-w-0"><ol class="breadcrumb flex-nowrap text-nowrap small lh-sm"><li class="breadcrumb-item d-inline-flex min-w-0"><a href="http://localhost:8069/web#" class="fw-bold text-truncate" data-tooltip="Back to “Đơn hàng”">Đơn hàng</a></li><li class="breadcrumb-item d-inline-flex min-w-0 o_back_button" data-hotkey="b"><a href="http://localhost:8069/web#" class="fw-bold text-truncate" data-tooltip="Back to “GH0001”">GH0001</a></li></ol><div class="d-flex gap-1 text-truncate"><div class="o_last_breadcrumb_item active d-flex gap-2 align-items-center min-w-0 lh-sm"><span class="min-w-0 text-truncate">In đơn hàng</span></div><div class="o_control_panel_breadcrumbs_actions d-inline-flex"></div></div></div><span class="d-none d-xl-block me-auto"></span></div><div class="o_control_panel_actions d-empty-none d-flex align-items-center justify-content-start justify-content-lg-around order-2 order-lg-1 w-100 mw-100 w-lg-auto"></div><div class="o_control_panel_navigation d-flex flex-wrap flex-md-nowrap justify-content-end gap-3 gap-lg-1 gap-xl-3 order-1 order-lg-2 flex-grow-1"></div></div></div><div class="o_content"><iframe class="h-100 w-100 d-block" src="./Odoo - In đơn hàng_files/242.html"></iframe></div></div></div><div class="o-main-components-container"><div class="o-mail-ChatWindowContainer"></div><div class="o-overlay-container"></div><div class=""></div><div class="o_notification_manager o_upload_progress_toast"></div><div class="o_fullscreen_indication"><p>Press <span>esc</span> to exit full screen</p></div><div class="o_notification_manager"><div role="alert" aria-live="assertive" aria-atomic="true" class="o_notification o_notification_fade border border-warning mb-2 position-relative o_notification_fade-enter-active"><strong class="o_notification_title d-block text-warning py-2 ps-3 pe-5">Report</strong><button type="button" class="o_notification_close btn" aria-label="Close"><i class="oi oi-close"></i></button><div class="o_notification_body ps-3 pe-5 py-2"><div class="me-auto o_notification_content">Unable to find Wkhtmltopdf on this system. The report will be shown in html.&lt;br&gt;&lt;br&gt;&lt;a href="http://wkhtmltopdf.org/" target="_blank"&gt;wkhtmltopdf.org&lt;/a&gt;</div></div></div></div></div></body><en2vi-host class="corom-element" version="3" style="all: initial; position: absolute; top: 0; left: 0; right: 0; height: 0; margin: 0; text-align: left; z-index: 10000000000; pointer-events: none; border: none; display: block"><template shadowrootmode="open"><style>@import "chrome-extension://gfgbmghkdjckppeomloefmbphdfmokgd/css/common.css";
+@import "chrome-extension://gfgbmghkdjckppeomloefmbphdfmokgd/css/style.css";</style><style id="svelte-1f4zgot">.toast-container.svelte-1f4zgot{position:fixed;pointer-events:none;width:0;height:0;display:flex;flex-direction:column-reverse;align-items:center;z-index:1000;bottom:0;padding:16px;gap:8px}.show.svelte-1f4zgot{width:100%;height:100%}</style>   <div class="toast-container svelte-1f4zgot"></div></template></en2vi-host><savior-host style="all: unset; position: absolute; top: 0; left: 0; z-index: 99999999999999; display: block !important; overflow: unset"><template shadowrootmode="open"><style>@import "chrome-extension://jdfkmiabjpfjacifcmihfdjhpnjpiick/css/content-script.css";
+</style><div class="body"><div class="turn-lights-overlay"></div><toasts id="toasts-container"></toasts></div></template></savior-host></html>

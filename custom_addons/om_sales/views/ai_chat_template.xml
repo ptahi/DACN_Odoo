@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ai_chat_widget" inherit_id="website.layout" name="AI Chat Widget" active="True">
+        <xpath expr="//body" position="inside">
+            <div id="ai_chat_wrapper" class="o_not_editable" style="position: fixed; z-index: 100000; bottom: 0; left: 0; width: 1px; height: 1px; overflow: visible; pointer-events: none;">
+                <!-- Nút bấm nổi (FAB) -->
+                <div id="ai-chat-fab" class="ai-chat-fab">
+                    <i class="fa fa-comments" aria-hidden="true"/>
+                </div>
+
+                <!-- Khung cửa sổ chat -->
+                <div id="ai-chat-window" class="ai-chat-window d-none">
+                    <div class="ai-chat-header">
+                        <h4><i class="fa fa-robot mr-2"/> Trợ lý AI Tư vấn Laptop</h4>
+                        <span id="ai-chat-close"><i class="fa fa-times"/></span>
+                    </div>
+                    <div class="ai-chat-body" id="ai-chat-messages">
+                        <div class="ai-message bot-message">
+                            Xin chào! Tôi là Trợ lý AI của cửa hàng. Bạn cần tư vấn mua máy tính như thế nào (Ngân sách, Ngành học, Nhu cầu)?
+                        </div>
+                    </div>
+                    <div class="ai-chat-footer">
+                        <input type="text" id="ai-chat-input" placeholder="Nhắn tin với AI..." autocomplete="off"/>
+                        <button id="ai-chat-send"><i class="fa fa-paper-plane"/></button>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

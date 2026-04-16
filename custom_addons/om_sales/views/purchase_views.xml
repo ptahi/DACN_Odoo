@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- TREE VIEW: Danh sách Đơn mua hàng -->
+        <record id="view_sm_purchase_order_tree" model="ir.ui.view">
+            <field name="name">sm.purchase.order.tree</field>
+            <field name="model">sm.purchase.order</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="state=='draft'" decoration-success="state=='done'" decoration-muted="state=='cancel'">
+                    <field name="name"/>
+                    <field name="vendor_name"/>
+                    <field name="date_order"/>
+                    <field name="total_amount" sum="Tổng Cộng" widget="monetary"/>
+                    <field name="state" widget="badge"
+                           decoration-info="state=='draft'"
+                           decoration-warning="state=='confirmed'"
+                           decoration-success="state=='done'"
+                           decoration-muted="state=='cancel'"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- FORM VIEW: Chi tiết Đơn mua hàng -->
+        <record id="view_sm_purchase_order_form" model="ir.ui.view">
+            <field name="name">sm.purchase.order.form</field>
+            <field name="model">sm.purchase.order</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <!-- Nút hành động -->
+                        <button name="action_confirm" string="Xác nhận Đặt Hàng" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_done" string="Hoàn Thành (Nhập kho xong)" type="object" class="btn-success" invisible="state != 'confirmed'"/>
+                        <button name="action_cancel" string="Hủy Đơn" type="object" invisible="state not in ('draft', 'confirmed')"/>
+                        <button name="action_draft" string="Chuyển về Nháp" type="object" invisible="state != 'cancel'"/>
+
+                        <!-- Thanh trạng thái -->
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                    </header>
+                    <sheet>
+                        <!-- Smart Button: Quản lý Phiếu Nhập Kho -->
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object"
+                                    name="action_view_pickings"
+                                    class="oe_stat_button"
+                                    icon="fa-truck"
+                                    invisible="picking_count == 0">
+                                <field name="picking_count" widget="statinfo" string="Phiếu Nhập"/>
+                            </button>
+                        </div>
+
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="vendor_name" placeholder="Tên Công ty / Nhà phân phối..." readonly="state != 'draft'"/>
+                                <field name="date_order" readonly="state != 'draft'"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Danh sách Sản phẩm">
+                                <field name="order_line_ids" readonly="state != 'draft'">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="price_unit" widget="monetary" string="Đơn giá nhập"/>
+                                        <field name="product_qty"/>
+                                        <field name="lot_names" readonly="1" optional="show"/>
+                                        <field name="price_subtotal" widget="monetary" readonly="1" sum="Thành tiền"/>
+                                    </tree>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="purchase_total">
+                                    <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                        <label for="total_amount"/>
+                                    </div>
+                                    <field name="total_amount" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <!-- Chatter cho Mail & Logic theo dõi -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- ACTION MUA HÀNG -->
+        <record id="action_sm_purchase_order" model="ir.actions.act_window">
+            <field name="name">Đơn Mua Hàng</field>
+            <field name="res_model">sm.purchase.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo Đơn Mua Hàng (PO) đầu tiên của bạn!
+                </p>
+                <p>
+                    Quản lý danh sách thiết bị/laptop cần nhập từ nhà cung cấp và tự động tạo Phiếu Nhập Kho.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

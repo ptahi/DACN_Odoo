@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="checkout_success" name="Checkout Success">
+        <t t-call="om_sales.website_layout">
+            <div id="wrap" class="js-checkout-success bg-light py-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 col-lg-6 text-center">
+                            <!-- Card chính -->
+                            <div class="card shadow-lg border-0 order-success-card">
+                                <div class="card-body p-5">
+                                    <!-- Icon thành công với vòng tròn -->
+                                    <div class="success-icon-wrapper mb-4">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+
+                                    <h1 class="display-5 fw-bold text-success mb-3">Đặt hàng thành công! Mã đơn hàng:<strong class="text-primary" t-esc="order.name"/></h1>
+
+                                    <p class="lead text-muted mb-4">
+                                        Cảm ơn bạn đã tin tưởng mua sắm. Đơn hàng của bạn đã được tiếp nhận và đang trong quá trình xử lý.
+                                    </p>
+
+                                    <!-- Thông tin tóm tắt (Optionally show order ID here if available) -->
+                                    <div class="order-info-box p-3 mb-4 rounded bg-light border">
+                                        <p class="mb-1 text-uppercase small fw-bold text-muted">Trạng thái đơn hàng</p>
+                                        <span class="badge rounded-pill bg-success-light text-success px-3 py-2">
+                                            <i class="fa fa-clock-o me-1"></i> Đang chờ xác nhận
+                                        </span>
+                                    </div>
+
+                                    <!-- Các bước tiếp theo -->
+                                    <div class="next-steps text-start mb-5">
+                                        <h6 class="fw-bold mb-3"><i class="fa fa-info-circle me-2 text-primary"></i>Các bước tiếp theo:</h6>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2">
+                                                <i class="fa fa-phone me-2 text-muted"></i> Nhân viên sẽ gọi điện xác nhận trong 15-30 phút.
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="fa fa-truck me-2 text-muted"></i> Đơn hàng sẽ được đóng gói và giao đi sớm nhất.
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Nút bấm -->
+                                    <div class="d-grid gap-2">
+                                        <a href="/shop" class="btn btn-success btn-lg shadow-sm">
+                                            Tiếp tục mua sắm
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,7 @@
+# Dựa trên image chính thức của Odoo 17
+FROM odoo:17.0
+
+# Copy file requirements.txt (nếu có thêm thư viện Python)
+COPY requirements.txt /tmp/requirements.txt
+
+RUN pip3 install --no-cache-dir -r /tmp/requirements.txt || true

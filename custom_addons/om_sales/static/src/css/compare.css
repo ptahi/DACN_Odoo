@@ -1,0 +1,53 @@
+/* Comparison Bar styling */
+.comparison-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(33, 37, 41, 0.95);
+    backdrop-filter: blur(10px);
+    color: white;
+    z-index: 9999;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.comparison-item {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.comparison-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.comparison-item .remove-item {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff4757;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    cursor: pointer;
+    border: 2px solid #212529;
+}
+
+.comparison-item-name {
+    font-size: 12px;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

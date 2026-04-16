@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_contact_request_tree" model="ir.ui.view">
+            <field name="name">contact.request.tree</field>
+            <field name="model">contact.request</field>
+            <field name="arch" type="xml">
+                <tree string="Yêu cầu liên hệ" decoration-info="state == 'new'" decoration-success="state == 'done'">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="subject"/>
+                    <field name="state" widget="badge"
+                           decoration-info="state == 'new'"
+                           decoration-warning="state == 'in_consultation'"
+                           decoration-success="state == 'done'"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_contact_request_form" model="ir.ui.view">
+            <field name="name">contact.request.form</field>
+            <field name="model">contact.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_in_consultation" string="Đang tư vấn" type="object" class="oe_highlight" invisible="state != 'new'"/>
+                        <button name="action_done" string="Xác nhận xong" type="object" class="oe_highlight" invisible="state != 'in_consultation'"/>
+                        <button name="action_cancel" string="Hủy bỏ" type="object" invisible="state in ['done', 'cancel']"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,in_consultation,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Họ tên khách hàng"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="email" widget="email"/>
+                                <field name="phone" widget="phone"/>
+                            </group>
+                            <group>
+                                <field name="subject"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Nội dung chi tiết" name="content">
+                                <field name="message" placeholder="Ghi chú nội dung khách hàng gửi..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!-- Chatter (Phần thảo luận dưới cùng) -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_sm_contact" model="ir.actions.act_window">
+            <field name="name">Liên hệ từ khách hàng</field>
+            <field name="res_model">contact.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Chưa có yêu cầu liên hệ nào!
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_contact_root" name="Khách hàng liên hệ" sequence="10"/>
+        <menuitem id="menu_contact_request_sub" name="Danh sách liên hệ" parent="menu_contact_root" action="action_sm_contact" sequence="1"/>
+    </data>
+</odoo>

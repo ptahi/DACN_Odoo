@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ===================== -->
+    <!-- TREE VIEW -->
+    <!-- ===================== -->
+    <record id="view_coupon_tree" model="ir.ui.view">
+        <field name="name">sm.coupon.tree</field>
+        <field name="model">sm.coupon</field>
+        <field name="arch" type="xml">
+            <tree string="Mã giảm giá">
+                <field name="name"/>
+                <field name="discount_type"/>
+                <field name="discount_value"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="usage_limit"/>
+                <field name="used_count"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- ===================== -->
+    <!-- FORM VIEW -->
+    <!-- ===================== -->
+    <record id="view_coupon_form" model="ir.ui.view">
+        <field name="name">sm.coupon.form</field>
+        <field name="model">sm.coupon</field>
+        <field name="arch" type="xml">
+            <form string="Mã giảm giá">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="discount_type"/>
+                            <field name="discount_value"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="usage_limit"/>
+                        <field name="used_count" readonly="1"/>
+                    </group>
+
+                </sheet>
+
+                <!-- CHATTER -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- ===================== -->
+    <!-- SEARCH VIEW -->
+    <!-- ===================== -->
+    <record id="view_coupon_search" model="ir.ui.view">
+        <field name="name">sm.coupon.search</field>
+        <field name="model">sm.coupon</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm mã giảm giá">
+                <field name="name"/>
+                <field name="discount_type"/>
+
+                <filter string="Đang hoạt động"
+                        name="filter_active"
+                        domain="[('active','=',True)]"/>
+
+                <filter string="Đã lưu trữ"
+                        name="filter_archived"
+                        domain="[('active','=',False)]"/>
+
+                <separator/>
+
+                <filter string="Còn hiệu lực"
+                        name="valid_coupon"
+                        domain="[('active','=',True)]"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- ===================== -->
+    <!-- ACTION -->
+    <!-- ===================== -->
+    <record id="action_coupon" model="ir.actions.act_window">
+        <field name="name">Mã giảm giá</field>
+        <field name="res_model">sm.coupon</field>
+        <field name="view_mode">tree,form</field>
+
+        <!-- QUAN TRỌNG: hiển thị cả inactive -->
+        <field name="context">{'active_test': False}</field>
+    </record>
+
+
+    <!-- ===================== -->
+    <!-- MENU -->
+    <!-- ===================== -->
+
+
+</odoo>

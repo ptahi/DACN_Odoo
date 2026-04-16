@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="email_template_cart_shipping" model="mail.template">
+        <field name="name">Website - Đơn hàng đang giao</field>
+
+        <field name="model_id" ref="om_sales.model_sm_shopping_cart"/>
+
+        <field name="subject">Đơn hàng {{ object.name }} đang được giao</field>
+
+        <field name="email_to">{{ object.customer_email }}</field>
+
+        <field name="email_from">{{ user.email or 'no-reply@yourcompany.com' }}</field>
+
+        <field name="auto_delete" eval="True"/>
+            <field name="report_template_ids"
+                   eval="[(4, ref('om_sales.action_report_shopping_cart'))]"/>
+
+        <field name="body_html" type="html">
+            <p>Xin chào <strong><t t-out="object.customer_name"/></strong>,</p>
+
+            <p> Cảm ơn bạn đã tin tưởng và mua sắm tại cửa hàng. Đơn hàng của bạn đang trong quá trình giao</p>
+            <p>
+                Đơn hàng <strong><t t-out="object.name"/></strong> .
+            </p>
+            <p> Ngày đặt : <strong><t t-out="object.date_order"/></strong></p>
+
+            <p><strong>Sản phẩm đã mua:</strong></p>
+<ul>
+    <t t-foreach="object.cart_line_ids" t-as="line">
+        <li>
+            <t t-out="line.product_id.name"/>
+            —
+            Số lượng: <t t-out="line.quantity"/>
+            —
+            Giá: <t t-esc="'{:,.0f} đ'.format(line.price_subtotal)"/>
+        </li>
+    </t>
+</ul>
+            <p>
+    <strong>Tổng tiền:</strong>
+    <t t-esc="'{:,.0f} ₫'.format(object.total_price)"/>
+</p>
+
+            <p>Cảm ơn bạn đã tin tưởng cửa hàng.!</p>
+        </field>
+    </record>
+    </data>
+</odoo>

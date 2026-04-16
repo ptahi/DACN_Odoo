@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_dsm_sanpham_tree" model="ir.ui.view" >
+            <field name="name">sm.sanpham.tree</field>
+            <field name="model">sm.sanpham</field>
+            <field name="arch" type="xml">
+                <tree string="Sản Phẩm">
+                    <field name="name"/>
+                    <field name="brand_id"/>
+                    <field name="code"/>
+                    <field name="description_sale" />
+                    <field name="price"/>
+                    <field name="qty_available"/>
+                    <field name="note" optional="hide"/>
+
+                </tree>
+            </field>
+        </record>
+    <record id="view_dsm_sanpham_form" model="ir.ui.view" >
+            <field name="name">sm.sanpham.form</field>
+            <field name="model">sm.sanpham</field>
+            <field name="arch" type="xml">
+                <form string="Sản Phẩm">
+                    <header>
+                        <button name="action_add_to_cart"
+                                string="Thêm vào đơn hàng"
+                                type="object"
+                                class="oe_highlight"/>
+                        <button name="action_buy_now"
+                        string="Mua ngay"
+                        type="object"
+                        class="oe_highlight"/>
+                        <button name="action_check_reordering_rules"
+                        string="Kiểm tra Cung ứng"
+                        type="object" />
+                    </header>
+                    <sheet>
+                     <group>
+                         <group>
+                             <field name="image_1920" widget="image"/> <!--Thêm ảnh-->
+                            <field name="name"/>
+                             <field name="brand_id"/>
+                             <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="description_sale"/>
+                        </group>
+                         <group>
+                            <field name="price"/>
+                            <field name="qty_available"/>
+                            <field name="barcode"/>
+                        </group>
+                        <group>
+                            <field name="note"/>
+                            <field name="is_available" widget="boolean_toggle"/>
+                        </group>
+                        <group string="Khuyến mãi (Flash Sale)">
+                            <field name="discount_percentage"/>
+                            <field name="discount_start_date"/>
+                            <field name="discount_end_date"/>
+                            <field name="is_discount_active" readonly="1"/>
+                            <field name="current_discounted_price" readonly="1"/>
+                        </group>
+                        <group string="Quy tắc Cung ứng">
+                            <field name="min_qty"/>
+                            <field name="reorder_qty"/>
+                            <field name="default_vendor_name"/>
+                        </group>
+                     </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+     <record id="action_sm_sanpham" model="ir.actions.act_window">
+         <field name="name">Sản Phẩm</field>
+         <field name="res_model">sm.sanpham</field>
+         <field name="view_mode">tree,form</field>
+                  <field name="view_ids" eval="[Command.clear(),
+                          (0,0,{'view_mode':'tree','view_id': ref('view_dsm_sanpham_tree')}),
+                          (0,0,{'view_mode':'form', 'view_id': ref('view_dsm_sanpham_form')})]"/>
+         <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+             Create a new san pham
+            </p>
+         </field>
+     </record>
+</odoo>

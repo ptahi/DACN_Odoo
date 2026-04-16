@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="om_sales.DateFilter" owl="1">
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-6">
+                <h2 style="font-weight: 800; color: #1a1a2e; font-size: 1.5rem; letter-spacing: -0.3px;">
+                    <i class="fa fa-tachometer me-2" style="color: #0d6efd;"></i>
+                    Tổng quan Laptop
+                </h2>
+            </div>
+            <div class="col-md-6 text-end">
+                <div class="btn-group filter-pills" role="group">
+                    <button type="button"
+                            t-attf-class="btn {{ props.state.date_filter === 'today' ? 'active' : '' }}"
+                            t-on-click="() => props.onFilterChange('today')">
+                        Hôm nay
+                    </button>
+                    <button type="button"
+                            t-attf-class="btn {{ props.state.date_filter === 'this_month' ? 'active' : '' }}"
+                            t-on-click="() => props.onFilterChange('this_month')">
+                        Tháng này
+                    </button>
+                    <button type="button"
+                            t-attf-class="btn {{ props.state.date_filter === 'this_year' ? 'active' : '' }}"
+                            t-on-click="() => props.onFilterChange('this_year')">
+                        Năm nay
+                    </button>
+                    <button type="button"
+                            t-attf-class="btn {{ props.state.date_filter === 'all' ? 'active' : '' }}"
+                            t-on-click="() => props.onFilterChange('all')">
+                        Toàn thời gian
+                    </button>
+                    <button type="button"
+                            t-attf-class="btn {{ props.state.date_filter === 'custom' ? 'active' : '' }}"
+                            t-on-click="() => props.onFilterChange('custom')">
+                        Tùy chỉnh
+                    </button>
+                </div>
+                <div t-if="props.state.date_filter === 'custom'"
+                     class="mt-2 d-flex justify-content-end align-items-center gap-2">
+                    <div class="input-group input-group-sm w-auto">
+                        <span class="input-group-text bg-white">Từ</span>
+                        <input type="date" class="form-control" t-model="props.state.date_start"/>
+                    </div>
+                    <div class="input-group input-group-sm w-auto">
+                        <span class="input-group-text bg-white">Đến</span>
+                        <input type="date" class="form-control" t-model="props.state.date_end"/>
+                    </div>
+                    <button type="button"
+                            class="btn btn-sm btn-primary"
+                            t-on-click="props.applyCustomDate">
+                        Áp dụng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
+

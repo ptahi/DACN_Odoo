@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- LOAD GOOGLE FONTS SAFELY -->
+    <template id="om_sales_fonts" inherit_id="web.layout" name="Om Sales Global Fonts">
+        <xpath expr="//head" position="inside">
+            <link rel="preconnect" href="https://fonts.googleapis.com"/>
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+            <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Sora:wght@600;700;800;900&amp;display=swap" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+    <!-- 1. MODERN WEBSITE LAYOUT -->
+    <template id="website_layout" name="Modern Website Layout">
+        <t t-call="website.layout">
+            <div id="wrap" class="modern-laptop-shop">
+                <!-- Header -->
+                <header class="modern-header">
+                    <div class="top-bar bg-dark text-white py-2">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <small><i class="fa fa-phone me-2"></i>Hotline: 0868134068</small>
+                                    <small class="ms-3"><i class="fa fa-envelope me-2"></i>thaipham@laptop.vn</small>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <small><i class="fa fa-truck me-2"></i>Miễn phí vận chuyển toàn quốc</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+                        <div class="container">
+                            <a class="navbar-brand modern-logo-v3" href="/shop">
+                                <div class="logo-container-v3">
+                                    <div class="logo-icon-v3">
+                                        <!-- Sleek Laptop SVG with path animation -->
+                                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path class="svg-path-draw" d="M6 30H34V10H6V30Z" stroke="#0d6efd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path class="svg-path-draw" d="M2 34H38" stroke="#0d6efd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path class="svg-path-draw" d="M16 30L14 34" stroke="#0d6efd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path class="svg-path-draw" d="M24 30L26 34" stroke="#0d6efd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <circle class="logo-dot" cx="20" cy="20" r="2" fill="#6610f2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="logo-text-v3">
+                                        <span class="letter" style="--i:1">T</span>
+                                        <span class="letter" style="--i:2">h</span>
+                                        <span class="letter" style="--i:3">a</span>
+                                        <span class="letter" style="--i:4">i</span>
+                                        <span class="letter-space"> </span>
+                                        <span class="letter letter-sub" style="--i:5">S</span>
+                                        <span class="letter letter-sub" style="--i:6">t</span>
+                                        <span class="letter letter-sub" style="--i:7">o</span>
+                                        <span class="letter letter-sub" style="--i:8">r</span>
+                                        <span class="letter letter-sub" style="--i:9">e</span>
+                                    </div>
+                                    <div class="mesh-glow"></div>
+                                </div>
+                            </a>
+
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarMain">
+                                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/shop">Trang chủ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/shop">Sản phẩm</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/contact">Liên hệ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/track-order">Theo dõi đơn hàng</a>
+                                    </li>
+                                </ul>
+
+                                <!-- Tìm kiếm -->
+                                <form class="d-flex me-3" action="/shop" method="get">
+                                    <div class="input-group search-box">
+                                        <input class="form-control" type="search" name="search" t-att-value="search" placeholder="Tìm kiếm laptop..." />
+                                        <button class="btn btn-outline-primary" type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <a href="/cart" class="btn btn-primary position-relative me-3">
+                                    <i class="fa fa-shopping-cart me-1"></i> Giỏ hàng
+
+                                    <span class="position-absolute top-0 start-100 translate-middle
+                                                 badge rounded-pill bg-danger js-cart-count"
+                                          style="display: none;">
+                                        0
+                                    </span>
+                                </a>
+
+                                <a href="https://zalo.me/0868134068" target="_blank" class="zalo-chat-header">
+                                    <img src="/om_sales/static/src/img/zalo.png" width="40" alt="Zalo"/>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+
+                <!-- Main Content -->
+                <main>
+                    <t t-out="0"/>
+                </main>
+
+                <!-- Footer -->
+                <footer class="modern-footer bg-dark text-white mt-5 pt-5 pb-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <h5 class="text-uppercase fw-bold mb-3">
+                                    <i class="fa fa-laptop me-2"></i>Store
+                                </h5>
+                                <p class="text-white-50">Chuyên cung cấp laptop chính hãng, bảo hành chu đáo, giá cả cạnh tranh nhất thị trường.</p>
+                                <div class="social-links mt-3">
+                                    <a href="#" class="text-white me-3"><i class="fa fa-facebook fa-lg"></i></a>
+                                    <a href="#" class="text-white me-3"><i class="fa fa-instagram fa-lg"></i></a>
+                                    <a href="#" class="text-white me-3"><i class="fa fa-youtube fa-lg"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <h5 class="text-uppercase fw-bold mb-3">Thông tin</h5>
+                                <ul class="list-unstyled footer-links">
+                                    <li><a href="/shop" class="text-white-50"><i class="fa fa-angle-right me-2"></i>Giới thiệu</a></li>
+                                    <li><a href="/shop" class="text-white-50"><i class="fa fa-angle-right me-2"></i>Sản phẩm</a></li>
+                                    <li><a href="/contact" class="text-white-50"><i class="fa fa-angle-right me-2"></i>Liên hệ</a></li>
+                                    <li><a href="/track-order" class="text-white-50"><i class="fa fa-angle-right me-2"></i>Theo dõi đơn hàng</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <h5 class="text-uppercase fw-bold mb-3">Liên hệ</h5>
+                                <p class="text-white-50 mb-2">
+                                    <i class="fa fa-map-marker me-2"></i>123 Đường ABC, Hà Nội
+                                </p>
+                                <p class="text-white-50 mb-2">
+                                    <i class="fa fa-phone me-2"></i>0868134068
+                                </p>
+                                <p class="text-white-50 mb-2">
+                                    <i class="fa fa-envelope me-2"></i>thaipham@laptop.vn
+                                </p>
+                            </div>
+                        </div>
+                        <hr class="bg-white-50"/>
+                        <div class="text-center text-white-50">
+                            <p class="mb-0">© 2024 Store. All rights reserved.</p>
+                        </div>
+                    </div>
+                </footer>
+
+                <!-- Floating Zalo Button -->
+                <a href="https://zalo.me/0868134068" target="_blank" class="zalo-chat-float">
+                    <img src="/om_sales/static/src/img/zalo.png" width="60" alt="Chat Zalo"/>
+                </a>
+
+                <!-- Floating Comparison Bar -->
+                <div id="comparison-bar" class="comparison-bar d-none">
+                    <div class="container d-flex align-items-center justify-content-between py-2">
+                        <div class="d-flex align-items-center gap-3" id="comparison-items">
+                            <!-- Items will be injected by JS -->
+                        </div>
+                        <div class="comparison-actions">
+                            <span class="comparison-text me-3 d-none d-md-inline">Chọn 2 sản phẩm để so sánh</span>
+                            <button id="btn-compare-now" class="btn btn-primary btn-sm px-4" disabled="disabled">
+                                So sánh ngay
+                            </button>
+                            <button id="btn-clear-compare" class="btn btn-link btn-sm text-white text-decoration-none">
+                                <i class="fa fa-times me-1"></i>Xóa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- 2. MODERN SHOP PAGE -->
+    <template id="shop_page" name="Shop Page">
+        <t t-call="om_sales.website_layout">
+            <!-- Hero Banner with Image -->
+            <section class="hero-banner-image" style="background-image: url('/om_sales/static/src/img/banner/banner.jpg');">
+                <div class="hero-overlay">
+                    <div class="container">
+                        <div class="row align-items-center min-vh-50">
+                            <div class="col-md-8 mx-auto text-center">
+                                <h1 class="display-3 fw-bold mb-3 animate-fade-in">LAPTOP </h1>
+                                <p class="lead mb-4 fs-4 animate-fade-in-delay">Giá tốt nhất - Freeship toàn quốc</p>
+                                <div class="hero-features mt-4">
+                                    <span class="badge bg-light text-dark me-2 p-3">
+                                        <i class="fa fa-shield me-2"></i>Bảo hành chính hãng
+                                    </span>
+                                    <span class="badge bg-light text-dark me-2 p-3">
+                                        <i class="fa fa-truck me-2"></i>Giao hàng nhanh
+                                    </span>
+                                    <span class="badge bg-light text-dark p-3">
+                                        <i class="fa fa-star me-2"></i>Hàng chất lượng
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" class="mt-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/shop">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Sản phẩm</li>
+                    </ol>
+                </nav>
+
+                <!-- Lọc sản phẩm -->
+                <div class="filter-section bg-white rounded shadow-sm p-4 mb-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 mb-3 mb-md-0">
+                            <h5 class="mb-0">
+                                <i class="fa fa-filter me-2 text-primary"></i>Lọc sản phẩm
+                            </h5>
+                        </div>
+
+                        <div class="col-md-3 mb-3 mb-md-0">
+                            <form method="get" action="/shop">
+                                <select name="sort" class="form-select" onchange="this.form.submit()">
+                                    <option value="">-- Sắp xếp theo --</option>
+                                    <option value="price_asc" t-att-selected="sort == 'price_asc'">
+                                        Giá tăng dần
+                                    </option>
+                                    <option value="price_desc" t-att-selected="sort == 'price_desc'">
+                                        Giá giảm dần
+                                    </option>
+                                </select>
+                                <input type="hidden" name="brand" t-att-value="selected_brand"/>
+                                <input type="hidden" name="search" t-att-value="search"/>
+                            </form>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="btn-group flex-wrap" role="group">
+                                <a t-attf-href="/shop#{'?search=' + search if search else ''}"
+                                   t-att-class="'btn btn-outline-primary %s' % ('active' if not selected_brand else '')">
+                                    <i class="fa fa-th me-1"></i>Tất cả
+                                </a>
+                                <t t-foreach="brands" t-as="brand">
+                                    <a t-attf-href="/shop?brand=#{brand.id}#{'&amp;search=' + search if search else ''}"
+                                       t-att-class="'btn btn-outline-primary %s' % ('active' if selected_brand == str(brand.id) else '')">
+                                        <t t-esc="brand.name"/>
+                                    </a>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danh sách sản phẩm -->
+                <div class="products-section mb-5">
+                    <div class="row g-4">
+                        <t t-if="not products">
+                            <div class="col-12 text-center py-5">
+                                <i class="fa fa-search fa-5x text-muted mb-3"></i>
+                                <h3 class="text-muted">Không tìm thấy sản phẩm nào phù hợp.</h3>
+                                <p class="text-muted">Vui lòng thử tìm kiếm với từ khóa khác.</p>
+                            </div>
+                        </t>
+
+                        <t t-foreach="products" t-as="product">
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="product-card">
+                                    <div class="product-badge">
+                                        <span class="badge bg-danger">Hot</span>
+                                    </div>
+
+                                    <div class="product-image text-center p-3 position-relative">
+                                        <a t-attf-href="/product/#{product.id}">
+                                            <img t-att-src="'/web/image/sm.sanpham/%s/image_1920' % product.id"
+                                                class="img-fluid product-img"
+                                                t-att-style="'filter: grayscale(100%) opacity(50%);' if product.qty_available &lt;= 0 else ''"
+                                                alt="Hình ảnh sản phẩm"/>
+                                        </a>
+                                        <!-- xem số lượng sản phẩm trong kho -->
+                                        <div t-if="product.qty_available &lt;= 0" class="position-absolute top-50 start-50 translate-middle w-100 text-center">
+                                            <span class="badge bg-secondary fs-6 py-2 px-3 shadow">HẾT HÀNG</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-info">
+                                        <div class="product-brand text-primary small fw-bold mb-1"
+                                             t-if="product.brand_id"
+                                             t-esc="product.brand_id.name"/>
+
+                                        <h6 class="product-name mb-2">
+                                            <a t-attf-href="/product/#{product.id}" class="text-decoration-none text-dark">
+                                                <t t-esc="product.name"/>
+                                            </a>
+                                        </h6>
+
+                                        <div class="product-rating mb-2">
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                            <small class="text-muted ms-1">(5.0)</small>
+                                        </div>
+
+                                        <div class="product-price mb-3">
+                                            <t t-if="product.is_discount_active">
+                                                <span class="text-muted text-decoration-line-through me-2">
+                                                    <t t-esc="'{:,}'.format(int(product.price))"/>đ
+                                                </span>
+                                                <span class="text-danger fw-bold fs-5">
+                                                    <t t-esc="'{:,}'.format(int(product.current_discounted_price))"/>đ
+                                                </span>
+                                                <span class="badge bg-danger ms-1">-<t t-esc="int(product.discount_percentage)"/>%</span>
+                                            </t>
+                                            <t t-else="">
+                                                <span class="text-danger fw-bold fs-5">
+                                                    <t t-esc="'{:,}'.format(int(product.price))"/>đ
+                                                </span>
+                                            </t>
+                                        </div>
+
+                                        <div class="product-actions d-grid gap-2">
+                                                <button type="button"
+                                                    class="btn btn-outline-info btn-sm js-add-to-compare"
+                                                    t-att-data-product-id="product.id"
+                                                    t-att-data-product-name="product.name"
+                                                    t-att-data-product-image="'/web/image/sm.sanpham/%s/image_1920' % product.id">
+                                                    <i class="fa fa-exchange me-1"></i>So sánh
+                                                </button>
+                                                <a t-attf-href="/product/#{product.id}"
+                                                   class="btn btn-outline-primary btn-sm">
+                                                    <i class="fa fa-eye me-1"></i>Chi tiết
+                                                </a>
+                                            <t t-if="product.qty_available > 0">
+                                                <a t-attf-href="/buy-now/#{product.id}"
+                                                   class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-bolt me-1"></i>Mua ngay
+                                                </a>
+                                                <button type="button"
+                                                    class="btn btn-primary btn-sm js-add-to-cart"
+                                                    t-att-data-product-id="product.id"
+                                                    t-att-data-product-name="product.name"
+                                                    t-att-data-product-price="product.current_discounted_price"
+                                                    t-att-data-product-image="'/web/image/sm.sanpham/%s/image_1920' % product.id">
+                                                    <i class="fa fa-shopping-cart me-1"></i>Thêm vào giỏ hàng
+                                                </button>
+                                            </t>
+                                            <!-- lock nút mua ngay và thêm vào giỏ khi sản phẩm hết -->
+                                            <t t-else="">
+                                                <button type="button" class="btn btn-secondary btn-sm" disabled="disabled">
+                                                    Hết hàng
+                                                </button>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+
+                <!-- Phân trang -->
+                <div class="d-flex justify-content-center mt-4">
+                    <t t-call="website.pager"/>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- 3. TRANG CHI TIẾT SẢN PHẨM -->
+    <template id="product_detail_page" name="Product Detail">
+        <t t-call="om_sales.website_layout">
+            <div class="container my-5">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/shop">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="/shop">Sản phẩm</a></li>
+                        <li class="breadcrumb-item active" t-esc="product.name"/>
+                    </ol>
+                </nav>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="product-detail-image bg-light rounded p-5 text-center shadow-sm position-relative">
+                            <t t-if="product.is_discount_active">
+                                <div class="position-absolute top-0 start-0 m-3 z-index-1">
+                                    <span class="badge bg-danger fs-5 shadow py-2 px-3">Hot</span>
+                                </div>
+                            </t>
+                            <img t-att-src="'/web/image/sm.sanpham/%s/image_1920' % product.id"
+                                 class="img-fluid rounded"
+                                 t-att-style="'max-height: 500px; object-fit: contain; filter: grayscale(100%) opacity(50%);' if product.qty_available &lt;= 0 else 'max-height: 500px; object-fit: contain;'"
+                                 alt="Hình ảnh sản phẩm"/>
+                            <div t-if="product.qty_available &lt;= 0" class="position-absolute top-50 start-50 translate-middle w-100 text-center">
+                                <span class="badge bg-secondary fs-3 py-3 px-5 shadow">HẾT HÀNG</span>
+                            </div>
+                        </div>
+
+                        <div class="product-guarantee mt-4 p-4 bg-light rounded">
+                            <h6 class="fw-bold mb-3"><i class="fa fa-check-circle text-success me-2"></i>Cam kết của ThaiStore</h6>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fa fa-check text-success me-2"></i>100% hàng chính hãng</li>
+                                <li class="mb-2"><i class="fa fa-check text-success me-2"></i>Bảo hành theo chính sách nhà sản xuất</li>
+                                <li class="mb-2"><i class="fa fa-check text-success me-2"></i>Đổi trả trong 7 ngày</li>
+                                <li class="mb-2"><i class="fa fa-check text-success me-2"></i>Miễn phí vận chuyển toàn quốc</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="product-detail-info">
+                            <span class="badge bg-primary mb-2 p-2" t-esc="product.brand_id.name"/>
+                            <h1 class="product-title mb-3 fw-bold" t-esc="product.name"/>
+
+                            <div class="product-rating mb-3">
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <span class="ms-2 text-muted">(128 đánh giá)</span>
+                            </div>
+
+                            <div class="price-box bg-light rounded p-4 mb-4 border-start border-danger border-5">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <small class="text-muted d-block mb-1">Giá bán:</small>
+                                        <t t-if="product.is_discount_active">
+                                            <span class="text-muted text-decoration-line-through me-3 fs-4">
+                                                <t t-esc="'{:,}'.format(int(product.price))"/>đ
+                                            </span>
+                                            <span class="text-danger fw-bold" style="font-size: 2.5rem;">
+                                                <t t-esc="'{:,}'.format(int(product.current_discounted_price))"/>đ
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span class="text-danger fw-bold" style="font-size: 2.5rem;">
+                                                <t t-esc="'{:,}'.format(int(product.price))"/>đ
+                                            </span>
+                                        </t>
+                                    </div>
+                                    <div class="text-end" t-if="product.is_discount_active">
+                                        <span class="badge bg-danger p-2 fs-5">-<t t-esc="int(product.discount_percentage)"/>%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-description mb-4 p-3 bg-light rounded">
+                                <h6 class="fw-bold mb-2"><i class="fa fa-info-circle me-2"></i>Mô tả sản phẩm:</h6>
+                                <p class="text-muted mb-0" t-esc="product.description_sale or 'Đang cập nhật thông tin chi tiết...'"/>
+                            </div>
+
+                            <div class="product-specs mb-4">
+                                <h6 class="fw-bold mb-3"><i class="fa fa-laptop me-2"></i>Thông số kỹ thuật:</h6>
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <div class="spec-item p-2 bg-light rounded">
+                                            <small class="text-muted d-block">CPU</small>
+                                            <strong>Intel Core i7</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="spec-item p-2 bg-light rounded">
+                                            <small class="text-muted d-block">RAM</small>
+                                            <strong>16GB DDR4</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="spec-item p-2 bg-light rounded">
+                                            <small class="text-muted d-block">Ổ cứng</small>
+                                            <strong>512GB SSD</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="spec-item p-2 bg-light rounded">
+                                            <small class="text-muted d-block">Màn hình</small>
+                                            <strong>15.6" FHD</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <t t-if="product.qty_available > 0">
+                                    <div class="col-md-6">
+                                        <a t-attf-href="/buy-now/#{product.id}" class="btn btn-danger btn-lg w-100">
+                                            <i class="fa fa-bolt me-2"></i>MUA NGAY
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button"
+                                            class="btn btn-primary btn-lg w-100 js-add-to-cart"
+                                            t-att-data-product-id="product.id"
+                                            t-att-data-product-name="product.name"
+                                            t-att-data-product-price="product.price"
+                                            t-att-data-product-image="'/web/image/sm.sanpham/%s/image_1920' % product.id">
+                                            <i class="fa fa-shopping-cart me-2"></i>THÊM GIỎ HÀNG
+                                        </button>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-secondary btn-lg w-100 disabled" disabled="disabled">
+                                            <i class="fa fa-ban me-2"></i>SẢN PHẨM TẠM THỜI HẾT HÀNG
+                                        </button>
+                                    </div>
+                                </t>
+                            </div>
+
+                            <div class="hotline-support mt-4 p-3 bg-warning bg-opacity-10 rounded border border-warning">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa fa-phone-square fa-3x text-warning me-3"></i>
+                                    <div>
+                                        <small class="d-block">Cần tư vấn?</small>
+                                        <strong class="fs-4 text-danger">0868134068</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- 4. BUY NOW PAGE -->
+    <template id="buy_now_page" name="Buy Now">
+        <t t-call="om_sales.website_layout">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-header bg-primary text-white py-3">
+                                <h5 class="mb-0"><i class="fa fa-shopping-bag me-2"></i>Thông tin đặt hàng</h5>
+                            </div>
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center mb-4 p-3 bg-light rounded">
+                                    <img t-att-src="'/web/image/sm.sanpham/%s/image_1920' % product.id"
+                                         class="img-thumbnail me-3 shadow-sm"
+                                         style="width:120px; height:120px; object-fit: contain;"
+                                         alt="Ảnh sản phẩm"/>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold" t-esc="product.name"/>
+                                        <p class="mb-0 text-muted small" t-if="product.brand_id">
+                                            <i class="fa fa-tag me-1"></i><t t-esc="product.brand_id.name"/>
+                                        </p>
+                                        <strong class="text-danger fs-5">
+                                            <t t-if="product.is_discount_active">
+                                                <span class="text-muted text-decoration-line-through me-2 fs-6"><t t-esc="'{:,}'.format(int(product.price))"/>đ</span>
+                                                <t t-esc="'{:,}'.format(int(product.current_discounted_price))"/>đ
+                                            </t>
+                                            <t t-else="">
+                                                <t t-esc="'{:,}'.format(int(product.price))"/>đ
+                                            </t>
+                                        </strong>
+                                    </div>
+                                </div>
+
+                                <form action="/buy-now/submit" method="post">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" name="product_id" t-att-value="product.id"/>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">
+                                            <i class="fa fa-user me-2 text-primary"></i>Họ và tên *
+                                        </label>
+                                        <input type="text" name="name" class="form-control form-control-lg"
+                                               placeholder="Nhập họ và tên" required="required"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">
+                                            <i class="fa fa-phone me-2 text-primary"></i>Số điện thoại *
+                                        </label>
+                                        <input type="tel" name="phone" class="form-control form-control-lg"
+                                               placeholder="Nhập số điện thoại" required="required"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">
+                                            <i class="fa fa-envelope me-2 text-primary"></i>Email *
+                                        </label>
+                                        <input type="email" name="email" class="form-control form-control-lg"
+                                               placeholder="Nhập email" required="required"/>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label fw-bold">
+                                            <i class="fa fa-map-marker me-2 text-primary"></i>Địa chỉ giao hàng *
+                                        </label>
+                                        <textarea name="address" class="form-control form-control-lg" rows="3"
+                                                  placeholder="Nhập địa chỉ giao hàng"
+                                                  required="required"></textarea>
+                                    </div>
+
+                                    <div class="alert alert-info mb-4">
+                                        <i class="fa fa-info-circle me-2"></i>
+                                        <strong>Lưu ý:</strong> Chúng tôi sẽ liên hệ với bạn trong vòng 24h để xác nhận đơn hàng.
+                                    </div>
+
+                                    <button type="submit" class="btn btn-danger btn-lg w-100 shadow">
+                                        <i class="fa fa-check-circle me-2"></i>Xác nhận đặt hàng
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- 5. ORDER SUCCESS PAGE -->
+    <template id="order_success_page" name="Order Success">
+        <t t-call="om_sales.website_layout">
+            <div class="js-checkout-success"></div>
+
+            <div class="container my-5 text-center">
+                <div class="success-animation mb-4">
+                    <div class="success-circle">
+                        <i class="fa fa-check text-white fa-4x"></i>
+                    </div>
+                </div>
+
+                <h2 class="text-success fw-bold mb-3">Đặt hàng thành công!</h2>
+                <p class="lead mb-4">
+                    CẢM ƠN BẠN ĐÃ TIN TƯỞNG VÀ MUA HÀNG TẠI STORE.<br/>
+                    Mã đơn hàng của bạn là: <strong class="text-primary fs-4" t-esc="order.name"/>
+                </p>
+
+                <div class="alert alert-info d-inline-block mb-4">
+                    <i class="fa fa-phone me-2"></i>
+                    Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận đơn hàng.
+                </div>
+
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="/shop" class="btn btn-primary btn-lg">
+                        <i class="fa fa-shopping-bag me-2"></i>Tiếp tục mua sắm
+                    </a>
+                    <a href="/track-order" class="btn btn-outline-primary btn-lg">
+                        <i class="fa fa-search me-2"></i>Theo dõi đơn hàng
+                    </a>
+                </div>
+            </div>
+
+        </t>
+    </template>
+
+    <!-- 6. CONTACT PAGE -->
+    <template id="contact_page" name="Contact Page">
+        <t t-call="om_sales.website_layout">
+            <div class="container my-5">
+                <div class="text-center mb-5">
+                    <h1 class="fw-bold mb-2">LIÊN HỆ VỚI CHÚNG TÔI</h1>
+                    <p class="text-muted">Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-7 mb-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body p-4">
+                                <h5 class="card-title mb-4">
+                                    <i class="fa fa-envelope me-2 text-primary"></i>Gửi tin nhắn cho chúng tôi
+                                </h5>
+                                <form action="/contact/submit" method="post">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Họ và tên *</label>
+                                            <input type="text" name="name" class="form-control"
+                                                   placeholder="Nhập họ và tên" required="required"/>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Số điện thoại *</label>
+                                            <input type="tel" name="phone" class="form-control"
+                                                   placeholder="Nhập số điện thoại" required="required"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" name="email" class="form-control"
+                                               placeholder="Nhập email"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Tiêu đề *</label>
+                                        <input type="text" name="subject" class="form-control"
+                                               placeholder="Nhập tiêu đề" required="required"/>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label">Nội dung *</label>
+                                        <textarea name="message" class="form-control" rows="5"
+                                                  placeholder="Nhập nội dung tin nhắn..." required="required"></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                                        <i class="fa fa-paper-plane me-2"></i>GỬI YÊU CẦU
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card bg-primary text-white h-100 shadow">
+                            <div class="card-body p-4">
+                                <h5 class="mb-4">
+                                    <i class="fa fa-info-circle me-2"></i>Thông tin liên hệ
+                                </h5>
+
+                                <div class="contact-info-item mb-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fa fa-map-marker fa-2x me-3 mt-1"></i>
+                                        <div>
+                                            <h6 class="mb-1">Địa chỉ</h6>
+                                            <p class="mb-0 opacity-75">123 Đường ABC, Hà Nội</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info-item mb-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fa fa-phone fa-2x me-3 mt-1"></i>
+                                        <div>
+                                            <h6 class="mb-1">Điện thoại</h6>
+                                            <p class="mb-0 opacity-75">0868134068</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info-item mb-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fa fa-envelope fa-2x me-3 mt-1"></i>
+                                        <div>
+                                            <h6 class="mb-1">Email</h6>
+                                            <p class="mb-0 opacity-75">thaipham@laptop.vn</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fa fa-clock-o fa-2x me-3 mt-1"></i>
+                                        <div>
+                                            <h6 class="mb-1">Giờ làm việc</h6>
+                                            <p class="mb-0 opacity-75">Thứ 2 - Chủ nhật: 8:00 - 22:00</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="my-4 opacity-25"/>
+
+                                <h6 class="mb-3">Kết nối với chúng tôi</h6>
+                                <div class="social-links">
+                                    <a href="#" class="text-white me-3">
+                                        <i class="fa fa-facebook fa-2x"></i>
+                                    </a>
+                                    <a href="#" class="text-white me-3">
+                                        <i class="fa fa-instagram fa-2x"></i>
+                                    </a>
+                                    <a href="#" class="text-white me-3">
+                                        <i class="fa fa-youtube fa-2x"></i>
+                                    </a>
+                                    <a href="https://zalo.me/0868134068" class="text-white" target="_blank">
+                                        <i class="fa fa-comments fa-2x"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- 7. CONTACT SUCCESS PAGE -->
+    <template id="contact_success_page" name="Contact Success">
+        <t t-call="om_sales.website_layout">
+            <div class="container my-5 text-center py-5">
+                <div class="success-animation mb-4">
+                    <div class="success-circle" style="background-color: #28a745;">
+                        <i class="fa fa-check text-white fa-4x"></i>
+                    </div>
+                </div>
+
+                <h2 class="fw-bold mb-3">Gửi thành công!</h2>
+                <p class="lead text-muted mb-4">
+                    Cảm ơn bạn đã liên hệ với chúng tôi.<br/>
+                    Chúng tôi sẽ phản hồi trong thời gian sớm nhất.
+                </p>
+
+                <a href="/shop" class="btn btn-primary btn-lg mt-4">
+                    <i class="fa fa-home me-2"></i>Quay lại cửa hàng
+                </a>
+            </div>
+        </t>
+    </template>
+
+
+    <!-- 8. TRANG SO SÁNH SẢN PHẨM -->
+    <template id="product_comparison_page" name="Product Comparison">
+        <t t-call="om_sales.website_layout">
+            <div class="container my-5">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">SO SÁNH SẢN PHẨM</h2>
+                    <div class="divider mx-auto my-3" style="width: 80px; height: 4px; background: #0d6efd;"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive shadow-sm rounded">
+                            <table class="table table-bordered bg-white align-middle text-center mb-0">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th style="width: 20%;" class="align-middle">Thông tin</th>
+                                        <th style="width: 40%;">
+                                            <div class="p-3">
+                                                <img t-att-src="'/web/image/sm.sanpham/%s/image_1920' % p1.id" 
+                                                     class="img-fluid mb-3" style="max-height: 150px; object-fit: contain;"/>
+                                                <h5 class="fw-bold" t-esc="p1.name"/>
+                                                <a t-attf-href="/buy-now/#{p1.id}" class="btn btn-danger btn-sm mt-2">Mua ngay</a>
+                                            </div>
+                                        </th>
+                                        <th style="width: 40%;">
+                                            <div class="p-3">
+                                                <img t-att-src="'/web/image/sm.sanpham/%s/image_1920' % p2.id" 
+                                                     class="img-fluid mb-3" style="max-height: 150px; object-fit: contain;"/>
+                                                <h5 class="fw-bold" t-esc="p2.name"/>
+                                                <a t-attf-href="/buy-now/#{p2.id}" class="btn btn-danger btn-sm mt-2">Mua ngay</a>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold bg-light">Thương hiệu</td>
+                                        <td t-esc="p1.brand_id.name or '-'"/>
+                                        <td t-esc="p2.brand_id.name or '-'"/>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold bg-light">Giá bán</td>
+                                        <td>
+                                            <div class="price-box">
+                                                <t t-if="p1.is_discount_active">
+                                                    <div class="text-muted text-decoration-line-through small"><t t-esc="'{:,}'.format(int(p1.price))"/>đ</div>
+                                                    <div class="text-danger fw-bold fs-5"><t t-esc="'{:,}'.format(int(p1.current_discounted_price))"/>đ</div>
+                                                </t>
+                                                <t t-else="">
+                                                    <div class="text-danger fw-bold fs-5"><t t-esc="'{:,}'.format(int(p1.price))"/>đ</div>
+                                                </t>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="price-box">
+                                                <t t-if="p2.is_discount_active">
+                                                    <div class="text-muted text-decoration-line-through small"><t t-esc="'{:,}'.format(int(p2.price))"/>đ</div>
+                                                    <div class="text-danger fw-bold fs-5"><t t-esc="'{:,}'.format(int(p2.current_discounted_price))"/>đ</div>
+                                                </t>
+                                                <t t-else="">
+                                                    <div class="text-danger fw-bold fs-5"><t t-esc="'{:,}'.format(int(p2.price))"/>đ</div>
+                                                </t>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold bg-light">Mô tả sản phẩm</td>
+                                        <td class="text-start p-4">
+                                            <p style="white-space: pre-line;" t-esc="p1.description_sale or 'Đang cập nhật...'"/>
+                                        </td>
+                                        <td class="text-start p-4">
+                                            <p style="white-space: pre-line;" t-esc="p2.description_sale or 'Đang cập nhật...'"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <a href="/shop" class="btn btn-outline-primary btn-lg">
+                        <i class="fa fa-arrow-left me-2"></i>Tiếp tục xem sản phẩm khác
+                    </a>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

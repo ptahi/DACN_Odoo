@@ -1,0 +1,6 @@
+# Require Libraries/Packages/Dependencies for Module is here
+sshtunnel==0.4.0
+pandas==2.3.3
+sqlalchemy==2.0.44
+mysql-connector-python==9.5.0
+psycopg2-binary==2.9.11s

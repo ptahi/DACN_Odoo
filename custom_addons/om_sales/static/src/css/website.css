@@ -1,0 +1,1105 @@
+/* ============================================================
+   GOOGLE FONTS — Hỗ trợ tiếng Việt đầy đủ (Đã chuyển sang templates.xml)
+   Thêm vào templates.xml:
+   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap&subset=vietnamese" rel="stylesheet">
+   ============================================================ */
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================================ */
+:root {
+    /* ── Typography ── */
+    --font-body: 'DM Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'DM Serif Display', 'Sora', Georgia, serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    /* Type Scale — Major Third (1.25) */
+    --text-xs:   0.75rem;     /* 12px */
+    --text-sm:   0.875rem;    /* 14px */
+    --text-base: 1rem;        /* 16px */
+    --text-md:   1.125rem;    /* 18px */
+    --text-lg:   1.25rem;     /* 20px */
+    --text-xl:   1.5625rem;   /* 25px */
+    --text-2xl:  1.953rem;    /* 31px */
+    --text-3xl:  2.441rem;    /* 39px */
+    --text-4xl:  3.052rem;    /* 49px */
+
+    /* Font Weights */
+    --fw-light:    300;
+    --fw-regular:  400;
+    --fw-medium:   500;
+    --fw-semibold: 600;
+    --fw-bold:     700;
+
+    /* Line Heights */
+    --lh-tight:   1.15;
+    --lh-snug:    1.35;
+    --lh-normal:  1.6;
+    --lh-relaxed: 1.8;
+
+    /* Letter Spacing */
+    --ls-tight:  -0.03em;
+    --ls-snug:   -0.02em;
+    --ls-normal:  0;
+    --ls-wide:    0.04em;
+    --ls-wider:   0.08em;
+    --ls-widest:  0.12em;
+
+    /* Colors */
+    --color-primary: #0d6efd;
+    --color-primary-dark: #0056d2;
+    --color-primary-deeper: #004bb5;
+    --color-primary-light: rgba(13, 110, 253, 0.08);
+    --color-primary-glow: rgba(13, 110, 253, 0.25);
+
+    --color-danger: #e63946;
+    --color-danger-dark: #c82333;
+    --color-success: #2dc653;
+    --color-warning: #ffc107;
+
+    --color-dark: #111827;
+    --color-dark-2: #1f2937;
+    --color-text: #0f172a;
+    --color-text-secondary: #334155;
+    --color-text-muted: #64748b;
+    --color-text-subtle: #94a3b8;
+    --color-border: #e2e8f0;
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-pill: 9999px;
+
+    --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.10);
+    --shadow-primary: 0 8px 24px var(--color-primary-glow);
+
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================================
+   TỔNG THỂ LAYOUT
+   ============================================================ */
+.modern-laptop-shop {
+    font-family: var(--font-body) !important;
+    font-size: var(--text-base);
+    font-weight: var(--fw-regular);
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    font-optical-sizing: auto;
+}
+
+/* Headings — Dùng serif display để tạo cá tính */
+.modern-laptop-shop h1,
+.modern-laptop-shop h2,
+.modern-laptop-shop h3 {
+    font-family: var(--font-heading) !important;
+    font-weight: var(--fw-regular); /* Serif display đẹp ở weight thường */
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text);
+}
+
+.modern-laptop-shop h4,
+.modern-laptop-shop h5,
+.modern-laptop-shop h6 {
+    font-family: var(--font-body) !important;
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-snug);
+    letter-spacing: var(--ls-snug);
+    color: var(--color-text);
+}
+
+.modern-laptop-shop h1 { font-size: var(--text-4xl); }
+.modern-laptop-shop h2 { font-size: var(--text-3xl); }
+.modern-laptop-shop h3 { font-size: var(--text-2xl); }
+.modern-laptop-shop h4 { font-size: var(--text-xl); }
+.modern-laptop-shop h5 { font-size: var(--text-lg); }
+.modern-laptop-shop h6 { font-size: var(--text-md); }
+
+.modern-laptop-shop p {
+    font-size: var(--text-base);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-secondary);
+}
+
+.modern-laptop-shop strong,
+.modern-laptop-shop b {
+    font-weight: var(--fw-semibold);
+    color: var(--color-text);
+}
+
+.modern-laptop-shop small {
+    font-size: var(--text-sm);
+    line-height: var(--lh-snug);
+    color: var(--color-text-muted);
+}
+
+/* Uppercase labels — dùng cho brand, tag, category */
+.modern-laptop-shop .text-label {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    font-family: var(--font-body);
+}
+
+/* Số giá tiền — dùng mono để căn thẳng hàng */
+.modern-laptop-shop .text-price {
+    font-family: var(--font-mono);
+    font-feature-settings: 'tnum' 1; /* tabular numbers */
+}
+
+.letter-space {
+    width: 0.6rem;
+    display: inline-block;
+}
+
+/* ============================================================
+   HEADER & NAVIGATION
+   ============================================================ */
+.modern-laptop-shop .modern-header {
+    background-color: var(--color-surface);
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0 1px 0 var(--color-border);
+}
+
+.modern-laptop-shop .top-bar {
+    background: linear-gradient(90deg, var(--color-dark) 0%, var(--color-dark-2) 100%) !important;
+    font-size: var(--text-xs);
+    font-weight: var(--fw-medium);
+    letter-spacing: var(--ls-wide);
+}
+
+.modern-laptop-shop .navbar {
+    padding: 0.875rem 0;
+    transition: all var(--transition-smooth);
+}
+
+.modern-laptop-shop .navbar-brand {
+    font-family: var(--font-heading) !important;
+    color: var(--color-primary) !important;
+    letter-spacing: var(--ls-tight);
+    font-size: 1.85rem !important;
+    font-weight: var(--fw-regular) !important; /* Serif đẹp ở weight thường */
+    font-style: italic; /* Serif italic = sang trọng, cá tính */
+    transition: transform var(--transition-spring);
+}
+
+.modern-laptop-shop .navbar-brand:hover {
+    transform: scale(1.04);
+}
+
+.modern-laptop-shop .nav-link {
+    font-family: var(--font-body);
+    font-weight: var(--fw-medium);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wide);
+    color: var(--color-text-secondary) !important;
+    padding: 0.5rem 1rem !important;
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.modern-laptop-shop .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-smooth);
+    transform: translateX(-50%);
+}
+
+.modern-laptop-shop .nav-link:hover {
+    color: var(--color-primary) !important;
+}
+
+.modern-laptop-shop .nav-link:hover::after {
+    width: 75%;
+}
+
+.modern-laptop-shop .search-box {
+    min-width: 260px;
+}
+
+.modern-laptop-shop .search-box .form-control {
+    border-radius: var(--radius-pill) 0 0 var(--radius-pill);
+    border-right: none;
+    border-color: var(--color-border);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-normal);
+}
+
+.modern-laptop-shop .search-box .btn {
+    border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+}
+
+.modern-laptop-shop .zalo-chat-header {
+    display: inline-flex;
+    align-items: center;
+    transition: transform var(--transition-spring);
+}
+
+.modern-laptop-shop .zalo-chat-header:hover {
+    transform: scale(1.1);
+}
+
+/* ============================================================
+   BANNER HERO
+   ============================================================ */
+.modern-laptop-shop .hero-banner-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+}
+
+.modern-laptop-shop .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(13, 110, 253, 0.92) 0%,
+            rgba(0, 69, 165, 0.88) 60%,
+            rgba(0, 40, 110, 0.82) 100%);
+    display: flex;
+    align-items: center;
+}
+
+.modern-laptop-shop .hero-banner-image .container {
+    position: relative;
+    z-index: 2;
+}
+
+.modern-laptop-shop .hero-banner-image h1 {
+    font-family: var(--font-heading) !important;
+    font-size: clamp(2.2rem, 5vw, var(--text-4xl));
+    font-weight: var(--fw-regular);
+    font-style: italic;
+    color: #fff;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.2);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-tight);
+}
+
+.modern-laptop-shop .hero-banner-image p {
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    font-weight: var(--fw-light);
+    color: rgba(255, 255, 255, 0.88);
+    line-height: var(--lh-relaxed);
+    letter-spacing: var(--ls-normal);
+}
+
+.modern-laptop-shop .min-vh-50 {
+    min-height: 50vh;
+}
+
+.modern-laptop-shop .hero-features .badge {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-wide);
+    padding: 0.625rem 1.25rem !important;
+    border-radius: var(--radius-pill) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(8px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modern-laptop-shop .animate-fade-in {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.modern-laptop-shop .animate-fade-in-delay {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.25s both;
+}
+
+/* ============================================================
+   BREADCRUMB
+   ============================================================ */
+.modern-laptop-shop .breadcrumb {
+    background: transparent;
+    padding: 0.75rem 0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    letter-spacing: var(--ls-normal);
+}
+
+.modern-laptop-shop .breadcrumb-item+.breadcrumb-item::before {
+    content: "›";
+    font-size: 1.1rem;
+    color: var(--color-text-subtle);
+}
+
+.modern-laptop-shop .breadcrumb-item a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.modern-laptop-shop .breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================================
+   BỘ LỌC (FILTER SECTION)
+   ============================================================ */
+.modern-laptop-shop .filter-section {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm);
+}
+
+.modern-laptop-shop .filter-section h5 {
+    font-family: var(--font-body) !important;
+    color: var(--color-text);
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+}
+
+.modern-laptop-shop .btn-outline-primary {
+    font-family: var(--font-body);
+    border-radius: var(--radius-pill);
+    margin: 3px;
+    border-color: var(--color-border);
+    color: var(--color-text-muted);
+    padding: 0.4rem 1.1rem;
+    font-weight: var(--fw-medium);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-normal);
+    transition: all var(--transition-smooth);
+    background: transparent;
+}
+
+.modern-laptop-shop .btn-outline-primary:hover {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--color-primary-glow);
+}
+
+.modern-laptop-shop .btn-outline-primary.active {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: #fff !important;
+    box-shadow: var(--shadow-primary);
+}
+
+/* ============================================================
+   CARD SẢN PHẨM (SHOP PAGE)
+   ============================================================ */
+.modern-laptop-shop .product-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg) !important;
+    border: 1px solid var(--color-border) !important;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth) !important;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.modern-laptop-shop .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg) !important;
+    border-color: var(--color-primary) !important;
+}
+
+.modern-laptop-shop .product-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+}
+
+.modern-laptop-shop .product-badge .badge {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-wide);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 2px 10px rgba(230, 57, 70, 0.3);
+}
+
+.modern-laptop-shop .product-image {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 28px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-laptop-shop .product-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 70%, rgba(13, 110, 253, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.modern-laptop-shop .product-img {
+    height: 200px;
+    object-fit: contain;
+    transition: transform var(--transition-smooth);
+    position: relative;
+    z-index: 1;
+}
+
+.modern-laptop-shop .product-card:hover .product-img {
+    transform: scale(1.06) translateY(-4px);
+}
+
+.modern-laptop-shop .product-info {
+    padding: 18px 20px 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Brand label — uppercase tracking */
+.modern-laptop-shop .product-brand {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    font-weight: var(--fw-bold);
+    color: var(--color-primary);
+}
+
+/* Product name — tên sản phẩm rõ ràng, dễ đọc */
+.modern-laptop-shop .product-name a {
+    font-family: var(--font-body);
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-base);
+    color: var(--color-text) !important;
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: var(--lh-snug);
+    min-height: 2.7rem;
+    letter-spacing: var(--ls-snug);
+    transition: color var(--transition-fast);
+}
+
+.modern-laptop-shop .product-name a:hover {
+    color: var(--color-primary) !important;
+}
+
+.modern-laptop-shop .product-rating {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--color-text-muted);
+}
+
+.modern-laptop-shop .product-price {
+    margin-top: 4px;
+}
+
+/* Giá tiền — dùng mono + tabular numbers */
+.modern-laptop-shop .product-price .text-danger {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: var(--fw-bold);
+    color: var(--color-danger) !important;
+    letter-spacing: -0.01em;
+    font-feature-settings: 'tnum' 1;
+}
+
+.modern-laptop-shop .product-actions .btn {
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wide);
+    transition: all var(--transition-smooth);
+}
+
+.modern-laptop-shop .product-actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================================
+   TRANG CHI TIẾT SẢN PHẨM
+   ============================================================ */
+.modern-laptop-shop .product-detail-image {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    transition: box-shadow var(--transition-smooth);
+    overflow: hidden;
+}
+
+.modern-laptop-shop .product-detail-image:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.modern-laptop-shop .price-box {
+    border-left: 4px solid var(--color-danger);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    background: linear-gradient(135deg, #fff8f8 0%, #fff 100%);
+    padding: 1.25rem 1.5rem;
+}
+
+/* Tiêu đề sản phẩm trên trang detail */
+.modern-laptop-shop .product-title {
+    font-family: var(--font-heading) !important;
+    font-weight: var(--fw-regular);
+    font-size: var(--text-3xl);
+    color: var(--color-text);
+    line-height: var(--lh-snug);
+    letter-spacing: var(--ls-tight);
+}
+
+.modern-laptop-shop .product-guarantee {
+    border-left: 3px solid var(--color-success);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding-left: 1rem;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--color-text-secondary);
+}
+
+/* Spec items */
+.modern-laptop-shop .spec-item {
+    border-left: 3px solid var(--color-primary);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    transition: all var(--transition-smooth);
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--color-text-secondary);
+    line-height: var(--lh-snug);
+}
+
+.modern-laptop-shop .spec-item:hover {
+    background-color: var(--color-primary-light) !important;
+    transform: translateX(6px);
+}
+
+.modern-laptop-shop .hotline-support {
+    animation: pulseRing 2.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+@keyframes pulseRing {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.45); }
+    50%       { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
+}
+
+/* ============================================================
+   FLOATING ZALO BUTTON
+   ============================================================ */
+.modern-laptop-shop .zalo-chat-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #0068ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(0, 104, 255, 0.45);
+    transition: transform var(--transition-spring), box-shadow var(--transition-smooth);
+    animation: floatBounce 3s ease-in-out infinite;
+}
+
+.modern-laptop-shop .zalo-chat-float:hover {
+    transform: scale(1.12);
+    box-shadow: 0 10px 32px rgba(0, 104, 255, 0.6);
+    animation-play-state: paused;
+}
+
+.modern-laptop-shop .zalo-chat-float img {
+    border-radius: 50%;
+}
+
+@keyframes floatBounce {
+    0%, 100% { transform: translateY(0); }
+    45%       { transform: translateY(-9px); }
+    65%       { transform: translateY(-4px); }
+}
+
+/* ============================================================
+   SUCCESS ANIMATION
+   ============================================================ */
+.modern-laptop-shop .success-animation {
+    display: inline-block;
+}
+
+.modern-laptop-shop .success-circle {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--color-success), #20a83e);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    box-shadow: 0 12px 32px rgba(45, 198, 83, 0.35);
+}
+
+@keyframes scaleIn {
+    0%   { transform: scale(0); opacity: 0; }
+    60%  { transform: scale(1.08); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.modern-laptop-shop .modern-footer {
+    background: linear-gradient(160deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+.modern-laptop-shop .modern-footer h5,
+.modern-laptop-shop .modern-footer h6 {
+    font-family: var(--font-body) !important;
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1rem;
+}
+
+.modern-laptop-shop .footer-links a {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: all var(--transition-smooth);
+    display: inline-block;
+    line-height: var(--lh-relaxed);
+}
+
+.modern-laptop-shop .footer-links a:hover {
+    color: #fff !important;
+    padding-left: 8px;
+}
+
+.modern-laptop-shop .social-links a {
+    transition: all var(--transition-spring);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modern-laptop-shop .social-links a:hover {
+    transform: translateY(-4px) scale(1.1);
+    opacity: 0.9;
+}
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+.modern-laptop-shop .form-control,
+.modern-laptop-shop .form-select {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--fw-regular);
+    color: var(--color-text);
+    border-color: var(--color-border);
+    border-radius: var(--radius-sm);
+    line-height: var(--lh-normal);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.modern-laptop-shop .form-control::placeholder {
+    color: var(--color-text-subtle);
+    font-weight: var(--fw-light);
+}
+
+.modern-laptop-shop .form-control:focus,
+.modern-laptop-shop .form-select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
+    outline: none;
+}
+
+.modern-laptop-shop .form-control-lg {
+    padding: 0.75rem 1rem;
+    font-size: var(--text-md);
+    border-radius: var(--radius-md);
+}
+
+.modern-laptop-shop label {
+    font-family: var(--font-body);
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wide);
+    color: var(--color-text-secondary);
+    margin-bottom: 0.4rem;
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.modern-laptop-shop .card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-xs);
+}
+
+.modern-laptop-shop .card-header {
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-body) !important;
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    background: #f8fafc;
+    color: var(--color-text-muted);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.modern-laptop-shop .btn {
+    font-family: var(--font-body);
+    border-radius: var(--radius-sm);
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wide);
+    padding: 0.5rem 1.375rem;
+    transition: all var(--transition-smooth);
+    line-height: var(--lh-snug);
+}
+
+.modern-laptop-shop .btn-lg {
+    padding: 0.75rem 2rem;
+    font-size: var(--text-base);
+    border-radius: var(--radius-md);
+}
+
+.modern-laptop-shop .btn-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border: none;
+    box-shadow: 0 2px 8px var(--color-primary-glow);
+}
+
+.modern-laptop-shop .btn-primary:hover {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-deeper) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-primary);
+}
+
+.modern-laptop-shop .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.modern-laptop-shop .btn-danger {
+    background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-dark) 100%);
+    border: none;
+    box-shadow: 0 2px 8px rgba(230, 57, 70, 0.25);
+}
+
+.modern-laptop-shop .btn-danger:hover {
+    background: linear-gradient(135deg, var(--color-danger-dark) 0%, #b21f2d 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(230, 57, 70, 0.35);
+}
+
+/* ============================================================
+   PAGINATION
+   ============================================================ */
+.modern-laptop-shop .pagination {
+    margin-top: 2rem;
+    gap: 4px;
+}
+
+.modern-laptop-shop .page-link {
+    border-radius: var(--radius-sm) !important;
+    border: 1px solid var(--color-border);
+    color: var(--color-primary);
+    font-family: var(--font-body);
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-sm);
+    letter-spacing: var(--ls-wide);
+    padding: 0.45rem 0.85rem;
+    transition: all var(--transition-smooth);
+}
+
+.modern-laptop-shop .page-link:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-primary);
+}
+
+.modern-laptop-shop .page-item.active .page-link {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-primary);
+}
+
+/* ============================================================
+   CONTACT PAGE
+   ============================================================ */
+.modern-laptop-shop .contact-info-item {
+    padding: 1rem 0;
+    font-size: var(--text-base);
+    font-weight: var(--fw-regular);
+    color: var(--color-text-secondary);
+    line-height: var(--lh-relaxed);
+}
+
+.modern-laptop-shop .contact-info-item i {
+    opacity: 0.85;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 992px) {
+    .modern-laptop-shop .hero-banner-image { min-height: 420px; }
+    .modern-laptop-shop .hero-banner-image h1 { font-size: var(--text-3xl); }
+    .modern-laptop-shop .search-box { min-width: 200px; }
+}
+
+@media (max-width: 768px) {
+    .modern-laptop-shop .hero-banner-image { min-height: 320px; }
+    .modern-laptop-shop .hero-banner-image h1 { font-size: var(--text-2xl); }
+    .modern-laptop-shop .hero-banner-image p { font-size: var(--text-base); }
+
+    .modern-laptop-shop .hero-features .badge {
+        font-size: var(--text-xs);
+        padding: 0.5rem 0.875rem !important;
+        margin-bottom: 0.5rem;
+    }
+
+    .modern-laptop-shop .filter-section .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .modern-laptop-shop .filter-section .btn-outline-primary {
+        width: 100%;
+        margin: 4px 0;
+        border-radius: var(--radius-md);
+    }
+
+    .modern-laptop-shop .navbar-brand { font-size: 1.5rem !important; }
+
+    .modern-laptop-shop .search-box {
+        width: 100%;
+        margin: 0.75rem 0;
+    }
+
+    .modern-laptop-shop .zalo-chat-float {
+        bottom: 20px;
+        right: 18px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .modern-laptop-shop .zalo-chat-float img { width: 44px; }
+}
+
+@media (max-width: 576px) {
+    .modern-laptop-shop .product-card { margin-bottom: 1rem; }
+    .modern-laptop-shop .price-box span { font-size: var(--text-2xl) !important; }
+    .modern-laptop-shop .top-bar { font-size: var(--text-xs); }
+    .modern-laptop-shop .top-bar .col-md-6 { text-align: center !important; }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.modern-laptop-shop .shadow-sm { box-shadow: var(--shadow-sm) !important; }
+.modern-laptop-shop .shadow    { box-shadow: var(--shadow-md) !important; }
+.modern-laptop-shop .rounded   { border-radius: var(--radius-md) !important; }
+
+/* Text utility overrides */
+.modern-laptop-shop .text-muted {
+    color: var(--color-text-muted) !important;
+    font-size: var(--text-sm);
+}
+
+/* ============================================================
+   LOADING STATES
+   ============================================================ */
+.modern-laptop-shop .btn.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.72;
+}
+
+.modern-laptop-shop .btn.loading::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 50%;
+    margin: -7.5px 0 0 -7.5px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spinner 0.65s linear infinite;
+}
+
+@keyframes spinner {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   LOGO V3 (INTERACTIVE TECH)
+   ============================================================ */
+.modern-logo-v3 {
+    text-decoration: none !important;
+    display: inline-block;
+}
+
+.logo-container-v3 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    padding: 8px 18px;
+    background: rgba(13, 110, 253, 0.03);
+    border-radius: var(--radius-md);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    isolation: isolate;
+}
+
+.svg-path-draw {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawPath 2.5s ease forwards;
+}
+
+@keyframes drawPath {
+    to { stroke-dashoffset: 0; }
+}
+
+.logo-dot {
+    opacity: 0;
+    transform: scale(0);
+    animation: dotPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 1.8s;
+}
+
+@keyframes dotPop {
+    to { opacity: 1; transform: scale(1); }
+}
+
+.logo-text-v3 {
+    display: flex;
+    font-family: var(--font-heading);
+    font-size: 1.875rem;
+    font-weight: var(--fw-regular);
+    font-style: italic;
+    letter-spacing: -2px;
+    animation: logoEntranceV3 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.letter {
+    display: inline-block;
+    color: var(--color-text);
+    transition: all 0.35s cubic-bezier(0.5, 0, 0.5, 1);
+    transform-origin: bottom center;
+}
+
+.letter-sub {
+    color: var(--color-primary);
+}
+
+.modern-logo-v3:hover .letter {
+    transform: translateY(-7px) rotate(-4deg);
+    color: #6610f2;
+    transition-delay: calc(var(--i) * 0.045s);
+}
+
+.modern-logo-v3:hover .letter-sub {
+    color: var(--color-primary);
+    transform: translateY(-7px) rotate(-4deg);
+}
+
+.mesh-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 130%;
+    height: 130%;
+    background: radial-gradient(ellipse at 50% 50%,
+            rgba(13, 110, 253, 0.14),
+            rgba(102, 16, 242, 0.08),
+            transparent 70%);
+    filter: blur(18px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.modern-logo-v3:hover .logo-container-v3 {
+    background: rgba(13, 110, 253, 0.05);
+    box-shadow: var(--shadow-sm);
+}
+
+.modern-logo-v3:hover .mesh-glow {
+    opacity: 1;
+    animation: glowPulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    from { transform: translate(-50%, -50%) scale(1);    opacity: 0.5;  }
+    to   { transform: translate(-50%, -50%) scale(1.18); opacity: 0.85; }
+}
+
+@keyframes logoEntranceV3 {
+    from { opacity: 0; letter-spacing: -12px; filter: blur(8px); }
+    to   { opacity: 1; letter-spacing: -2px;  filter: blur(0);   }
+}

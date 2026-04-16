@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="action_sm_sanpham_dell" model="ir.actions.act_window">
+        <field name="name">Sản phẩm Dell</field>
+        <field name="res_model">sm.sanpham</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('brand_id.name','=','Dell')]</field>
+    </record>
+
+    <record id="action_sm_sanpham_asus" model="ir.actions.act_window">
+        <field name="name">Sản phẩm ASUS</field>
+        <field name="res_model">sm.sanpham</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('brand_id.name','=','Asus')]</field>
+    </record>
+
+    <record id="action_sm_sanpham_lenovo" model="ir.actions.act_window">
+        <field name="name">Sản phẩm LENOVO</field>
+        <field name="res_model">sm.sanpham</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('brand_id.name','=','Lenovo')]</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- VIEWS CHO sm.stock.location -->
+        <record id="view_sm_stock_location_tree" model="ir.ui.view">
+            <field name="name">sm.stock.location.tree</field>
+            <field name="model">sm.stock.location</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="location_type"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sm_stock_location_form" model="ir.ui.view">
+            <field name="name">sm.stock.location.form</field>
+            <field name="model">sm.stock.location</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="location_type"/>
+                            <field name="company_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sm_stock_location" model="ir.actions.act_window">
+            <field name="name">Vị trí Kho</field>
+            <field name="res_model">sm.stock.location</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- VIEWS CHO sm.stock.picking -->
+        <record id="view_sm_stock_picking_tree" model="ir.ui.view">
+            <field name="name">sm.stock.picking.tree</field>
+            <field name="model">sm.stock.picking</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="state=='ready'" decoration-success="state=='done'" decoration-muted="state=='cancel'">
+                    <field name="name"/>
+                    <field name="picking_type"/>
+                    <field name="location_id"/>
+                    <field name="location_dest_id"/>
+                    <field name="customer_name"/>
+                    <field name="state" widget="badge"
+                           decoration-info="state=='ready'"
+                           decoration-success="state=='done'"
+                           decoration-muted="state=='cancel'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sm_stock_picking_form" model="ir.ui.view">
+            <field name="name">sm.stock.picking.form</field>
+            <field name="model">sm.stock.picking</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_print_picking"
+                                string="In Phiếu Kho"
+                                type="object"
+                                class="btn-secondary"
+                                icon="fa-print"/>
+                        <button name="action_confirm" string="Xác nhận" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_done" string="Hoàn thành" type="object" class="oe_highlight" invisible="state != 'ready'"/>
+                        <button name="action_cancel" string="Hủy kết quả" type="object" invisible="state not in ('draft', 'ready')"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,ready,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="picking_type" readonly="state != 'draft'"/>
+                                <field name="customer_name" readonly="state != 'draft'"/>
+                                <field name="cart_id" readonly="state != 'draft'" invisible="not cart_id"/>
+                                <field name="purchase_id" readonly="state != 'draft'" invisible="not purchase_id"/>
+                            </group>
+                            <group>
+                                <field name="location_id" readonly="state != 'draft'"/>
+                                <field name="location_dest_id" readonly="state != 'draft'"/>
+                                <field name="date_done" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <!-- TRANG CHI TIẾT SẢN PHẨM (CHO PHIẾU TỰ ĐỘNG TỪ ĐƠN HÀNG - BỊ KHÓA) -->
+                            <page string="Chi tiết sản phẩm" invisible="not cart_id and not purchase_id">
+                                <field name="move_ids" readonly="state == 'done'">
+                                    <tree editable="bottom" create="0" delete="0">
+                                        <field name="product_id" readonly="1"/>
+                                        <field name="name" readonly="1"/>
+                                        <field name="quantity" readonly="1"/>
+                                        <field name="state" readonly="1"/>
+                                        <field name="lot_names" string="Serial đã chọn"/>
+                                        <button name="action_show_details" string="Chi tiết Serial" type="object" icon="fa-list" class="oe_stat_button"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <!-- TRANG CHI TIẾT SẢN PHẨM (CHO PHIẾU THỦ CÔNG - ĐƯỢC PHÉP THÊM/XÓA) -->
+                            <page string="Chi tiết sản phẩm" invisible="cart_id or purchase_id">
+                                <field name="move_ids" readonly="state == 'done'">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="name"/>
+                                        <field name="quantity"/>
+                                        <field name="state" readonly="1"/>
+                                        <field name="lot_names" string="Serial đã chọn"/>
+                                        <button name="action_show_details" string="Chi tiết Serial" type="object" icon="fa-list" class="oe_stat_button"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sm_stock_picking" model="ir.actions.act_window">
+            <field name="name">Phiếu Kho</field>
+            <field name="res_model">sm.stock.picking</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_sm_stock_picking_in" model="ir.actions.act_window">
+            <field name="name">Phiếu Nhập Kho</field>
+            <field name="res_model">sm.stock.picking</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('picking_type', '=', 'in')]</field>
+        </record>
+
+        <!-- VIEWS CHO sm.stock.move -->
+        <record id="view_sm_stock_move_tree" model="ir.ui.view">
+            <field name="name">sm.stock.move.tree</field>
+            <field name="model">sm.stock.move</field>
+            <field name="arch" type="xml">
+                <tree create="0" edit="0" delete="0" decoration-success="state=='done'" decoration-muted="state=='cancel'">
+                    <field name="picking_id"/>
+                    <field name="product_id"/>
+                    <field name="quantity"/>
+                    <field name="location_id"/>
+                    <field name="location_dest_id"/>
+                    <field name="state" widget="badge"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sm_stock_move_form" model="ir.ui.view">
+            <field name="name">sm.stock.move.form</field>
+            <field name="model">sm.stock.move</field>
+            <field name="arch" type="xml">
+                <form create="0" edit="0" delete="0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="product_id" readonly="1"/>
+                                <field name="quantity" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="picking_id" readonly="1"/>
+                                <field name="location_id" readonly="1"/>
+                                <field name="location_dest_id" readonly="1"/>
+                                <field name="state" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- POPUP VIEW CHO CHI TIẾT SERIAL CỦA 1 LOG DỊCH CHUYỂN -->
+        <record id="view_sm_stock_move_operations" model="ir.ui.view">
+            <field name="name">sm.stock.move.operations.form</field>
+            <field name="model">sm.stock.move</field>
+            <field name="arch" type="xml">
+                <form string="Chi tiết Serial">
+                    <group>
+                        <group>
+                            <field name="product_id" readonly="1"/>
+                            <field name="quantity" readonly="1" string="Số lượng cần"/>
+                            <field name="state" invisible="1"/>
+                            <field name="picking_type" invisible="1"/>
+                            <field name="cart_id" invisible="1"/>
+                            <field name="location_id" invisible="1"/>
+                            <field name="location_dest_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="move_line_ids" readonly="state == 'done'" context="{'default_product_id': product_id, 'default_location_id': location_id, 'default_location_dest_id': location_dest_id}">
+                        <tree editable="bottom">
+                            <field name="lot_name" column_invisible="parent.picking_type != 'in' or parent.cart_id != False"/>
+                            <field name="lot_id" options="{'no_create': True}" domain="[('product_id', '=', parent.product_id), '|', ('current_location_id', '=', False), ('current_location_id', '=', parent.location_id)]" column_invisible="parent.picking_type == 'in' and parent.cart_id == False"/>
+                            <field name="qty_done" sum="Tổng" readonly="1"/>
+                            <field name="location_id" column_invisible="1"/>
+                            <field name="location_dest_id" column_invisible="1"/>
+                            <field name="product_id" column_invisible="1"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button string="Xác nhận" class="btn-primary" special="save" data-hotkey="v"/>
+                        <button string="Đóng" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- TREE VIEW LỊCH SỬ DỊCH CHUYỂN CHI TIẾT THEO SERIAL -->
+        <record id="view_sm_stock_move_line_tree" model="ir.ui.view">
+            <field name="name">sm.stock.move.line.tree</field>
+            <field name="model">sm.stock.move.line</field>
+            <field name="arch" type="xml">
+                <tree string="Chi tiết Dịch chuyển" create="0" edit="0"  decoration-success="state == 'done'" decoration-warning="state == 'ready'" decoration-muted="state == 'cancel'">
+                    <field name="picking_id"/>
+                    <field name="product_id"/>
+                    <field name="lot_id" string="Số Serial"/>
+                    <field name="qty_done"/>
+                    <field name="location_id"/>
+                    <field name="location_dest_id"/>
+                    <field name="state" widget="badge" decoration-success="state == 'done'" decoration-warning="state == 'ready'" decoration-muted="state == 'cancel'"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- SEARCH VIEW LỊCH SỬ DỊCH CHUYỂN -->
+        <record id="view_sm_stock_move_line_search" model="ir.ui.view">
+            <field name="name">sm.stock.move.line.search</field>
+            <field name="model">sm.stock.move.line</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm Dịch chuyển">
+                    <field name="picking_id" string="Mã phiếu"/>
+                    <field name="product_id" string="Sản phẩm"/>
+                    <field name="lot_id" string="Số Serial"/>
+                    <separator/>
+                    <filter string="Đã hoàn thành" name="state_done" domain="[('state','=','done')]"/>
+                    <group expand="0" string="Gộp theo">
+                        <filter string="Sản phẩm" name="group_product" context="{'group_by':'product_id'}"/>
+                        <filter string="Từ Vị trí" name="group_location" context="{'group_by':'location_id'}"/>
+                        <filter string="Đến Vị trí" name="group_location_dest" context="{'group_by':'location_dest_id'}"/>
+                        <filter string="Trạng thái" name="group_state" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_sm_stock_move" model="ir.actions.act_window">
+            <field name="name">Lịch sử dịch chuyển</field>
+            <field name="res_model">sm.stock.move.line</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="view_sm_stock_move_line_search"/>
+            <field name="context">{'search_default_state_done': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Chưa có lịch sử dịch chuyển Serial nào!
+                </p>
+                <p>
+                    Lịch sử sẽ tự động được ghi nhận mỗi khi Phiếu Kho hoàn thành.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="email_template_cart_confirm" model="mail.template">
+            <field name="name">Website - Xác nhận đơn hàng</field>
+
+            <field name="model_id" ref="om_sales.model_sm_shopping_cart"/>
+
+            <field name="subject">Xác nhận đơn hàng {{ object.name }}</field>
+
+            <field name="email_to">{{ object.customer_email }}</field>
+
+            <field name="email_from">{{ user.email or 'no-reply@yourcompany.com' }}</field>
+
+            <field name="auto_delete" eval="True"/>
+
+            <field name="report_template_ids"
+                   eval="[(4, ref('om_sales.action_report_shopping_cart'))]"/>
+
+            <field name="body_html" type="html">
+                <p>Xin chào <strong><t t-out="object.customer_name"/></strong>,</p>
+
+                <p>
+                    Cảm ơn bạn đã tin tưởng và mua sắm tại cửa hàng.
+                    Đơn hàng của bạn đã được xác nhận thành công.
+                </p>
+
+                <p>
+                    Đơn hàng <strong><t t-out="object.name"/></strong> đã được xác nhận.
+                </p>
+
+                <p>
+                    Ngày đặt:
+                    <strong><t t-out="object.date_order"/></strong>
+                </p>
+                <p>
+                    Địa chỉ :<strong><t t-out="object.customer_address"/></strong>
+                </p>
+
+                <p><strong>Sản phẩm đã mua:</strong></p>
+                <ul>
+                    <t t-foreach="object.cart_line_ids" t-as="line">
+                        <li>
+                            <t t-out="line.product_id.name"/>
+                            —
+                            Số lượng: <t t-out="line.quantity"/>
+                            —
+                            Giá: <t t-esc="'{:,.0f} đ'.format(line.price_subtotal)"/>
+                        </li>
+                    </t>
+                </ul>
+
+                <p>
+                    <strong>Tổng tiền hàng:</strong>
+                    <t t-esc="'{:,.0f} ₫'.format(object.subtotal_price if object.subtotal_price else object.total_price + object.discount_amount)"/>
+                </p>
+
+                <t t-if="object.discount_amount > 0">
+                    <p class="text-success">
+                        <strong>Giảm giá:</strong>
+                        -<t t-esc="'{:,.0f} ₫'.format(object.discount_amount)"/>
+                    </p>
+                </t>
+
+                <p>
+                    <strong>Thành tiền:</strong>
+                    <strong style="font-size: 16px; color: #dc3545;">
+                        <t t-esc="'{:,.0f} ₫'.format(object.total_price)"/>
+                    </strong>
+                </p>
+
+                <p>Cảm ơn bạn đã mua hàng!</p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

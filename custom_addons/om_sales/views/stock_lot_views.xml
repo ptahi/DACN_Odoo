@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- TREE VIEW Danh sách Lots/Serials -->
+        <record id="view_sm_stock_lot_tree" model="ir.ui.view">
+            <field name="name">sm.stock.lot.tree</field>
+            <field name="model">sm.stock.lot</field>
+            <field name="arch" type="xml">
+                <tree string="Số Serial / Lô" decoration-info="1">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="mfg_date" optional="hide"/>
+                    <field name="warranty_end_date"/>
+                    <field name="warranty_status" widget="badge"
+                           decoration-success="warranty_status == 'in_warranty'"
+                           decoration-danger="warranty_status == 'out_of_warranty'"
+                           decoration-muted="warranty_status == 'none'"/>
+                    <field name="current_location_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- FORM VIEW Chi tiết Lô -->
+        <record id="view_sm_stock_lot_form" model="ir.ui.view">
+            <field name="name">sm.stock.lot.form</field>
+            <field name="model">sm.stock.lot</field>
+            <field name="arch" type="xml">
+                <form string="Số Serial / Lô">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="action_view_moves" type="object" icon="fa-exchange">
+                                <field string="Lịch sử" name="move_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" string="Số Serial"/>
+                            <h1><field name="name" placeholder="VD: PF2X8V8A" required="1"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="product_id" required="1"/>
+                                <field name="current_location_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Thời hạn Bảo Hành" name="warranty_info">
+                                <group>
+                                    <group>
+                                        <field name="mfg_date"/>
+                                        <field name="warranty_end_date"/>
+                                    </group>
+                                    <group>
+                                        <field name="warranty_status" widget="badge"
+                                               decoration-success="warranty_status == 'in_warranty'"
+                                               decoration-danger="warranty_status == 'out_of_warranty'"
+                                               decoration-muted="warranty_status == 'none'"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Ghi chú">
+                                <field name="note" placeholder="Thông tin bảo hành, xuất xứ..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sm_stock_lot" model="ir.actions.act_window">
+            <field name="name">Số Serial / Lô</field>
+            <field name="res_model">sm.stock.lot</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Thêm Số Serial mới
+              </p><p>
+                Quản lý các thiết bị thông qua Số Serial duy nhất để theo dõi tồn kho chính xác và phục vụ bảo hành.
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

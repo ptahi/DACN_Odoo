@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sm_customer,access.sm.customer,model_sm_customer,base.group_user,1,1,1,1
+access_sm_sanpham,access.sm.sanpham,model_sm_sanpham,base.group_user,1,1,1,1
+access_sm_brand,access.sm.brand,model_sm_brand,,1,1,1,1
+access_sm_shopping_cart,sm.shopping.cart,model_sm_shopping_cart,base.group_user,1,1,1,1
+access_sm_shopping_cart_line,sm.shopping.cart.line,model_sm_shopping_cart_line,base.group_user,1,1,1,1
+access_contact_request,access.contact.request,model_contact_request,base.group_user,1,1,1,1
+access_sm_sanpham_public,access.sm.sanpham.public,model_sm_sanpham,base.group_public,1,0,0,0
+access_sm_coupon,access.sm.coupon,model_sm_coupon,base.group_user,1,1,1,1
+access_sm_stock_location,access.sm.stock.location,model_sm_stock_location,base.group_user,1,1,1,1
+access_sm_stock_picking,access.sm.stock.picking,model_sm_stock_picking,base.group_user,1,1,1,1
+access_sm_stock_move,access.sm.stock.move,model_sm_stock_move,base.group_user,1,1,1,1
+access_sm_purchase_order,access.sm.purchase.order,model_sm_purchase_order,base.group_user,1,1,1,1
+access_sm_purchase_order_line,access.sm.purchase.order.line,model_sm_purchase_order_line,base.group_user,1,1,1,1
+access_sm_stock_lot,access.sm.stock.lot,model_sm_stock_lot,base.group_user,1,1,1,1
+access_sm_stock_move_line,access.sm.stock.move.line,model_sm_stock_move_line,base.group_user,1,1,1,1

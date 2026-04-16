@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="payment_qr_page" name="Payment QR Page">
+        <t t-call="om_sales.website_layout">
+            <div class="container mt-5 mb-5 text-center">
+
+                <h2 class="mb-4">Thanh toán chuyển khoản</h2>
+
+                <p>
+                    Mã đơn hàng:
+                    <strong t-esc="order.name"/>
+                </p>
+
+                <p>
+                    Số tiền cần thanh toán:
+                    <strong class="text-danger">
+                        <t t-esc="'{:,.0f} '.format(order.total_price)"/> VND
+                    </strong>
+                </p>
+
+                <!-- QR -->
+                <div class="my-4">
+                    <img t-att-src="qr_url"
+                         class="img-fluid"
+                         style="max-width:300px"
+                         alt="QR thanh toán"/>
+                </div>
+
+                <p class="text-muted">
+                    Nội dung chuyển khoản: <strong t-esc="order.name"/>
+                </p>
+
+                <a t-att-href="'/payment/confirm/%s' % order.id"
+                   class="btn btn-success btn-lg mt-3">
+                    Tôi đã thanh toán
+                </a>
+
+            </div>
+        </t>
+    </template>
+</odoo>
