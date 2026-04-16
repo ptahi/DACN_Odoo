@@ -27,6 +27,7 @@ Khi truy cập vào Odoo lần đầu tiên, bạn sẽ được yêu cầu tạ
 Vào Apps chọn Update Apps List
 Chọn Install om_sales
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 Để chạy chức năng AI cần phải có API Key của Google AI Studio, bạn có thể lấy API Key tại https://aistudio.google.com/app/apikey hoặc lấy key API có sẵn "AIzaSyBMcCtDTX32PQjbxIrbuh0NIcGLdZr7lKg"
 ### Bước 1:
@@ -37,3 +38,5 @@ Vào Technical chọn System Parameters
 
 ### Bước 3:
 Tạo key "gemini.api_key" và thay đổi giá trị thành "API key của bạn" đã lấy bên trên và save lại
+
+Địa chỉ của trang web sẽ là localhost:8069/shop
