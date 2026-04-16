@@ -22,6 +22,10 @@ Mở trình duyệt và truy cập vào địa chỉ http://localhost:8069 để
 
 ### Bước 6: Tạo cơ sở dữ liệu
 Khi truy cập vào Odoo lần đầu tiên, bạn sẽ được yêu cầu tạo một cơ sở dữ liệu mới. Nhập thông tin cần thiết và nhấn nút "Create Database" để sử dụng
+### Bước 7: Cài đặt module om_sales
+Vào Apps chọn Update Apps List
+Chọn Install om_sales
+
 
 Để chạy chức năng AI cần phải có API Key của OpenAI, bạn có thể lấy API Key tại https://platform.openai.com/account/api-keys hoặc lấy key API có sẵn "AIzaSyBMcCtDTX32PQjbxIrbuh0NIcGLdZr7lKg"
 ### Bước 1:
