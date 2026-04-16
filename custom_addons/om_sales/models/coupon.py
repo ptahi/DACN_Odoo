@@ -6,7 +6,7 @@ class Coupon(models.Model):
     _description = 'Mã giảm giá'
     _inherit = ["mail.thread"]
 
-
+1234234
     name = fields.Char(string='Mã giảm giá', required=True, copy=False)
     discount_type = fields.Selection([
         ('fixed', 'Số tiền cố định'),

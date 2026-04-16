@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError
 
-123
+
 class PurchaseOrder(models.Model):
   _name = 'sm.purchase.order'
   _description = 'Đơn Mua Hàng'
