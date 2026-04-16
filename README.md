@@ -29,7 +29,7 @@ Chọn Install om_sales
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-Để chạy chức năng AI cần phải có API Key của Google AI Studio, bạn có thể lấy API Key tại https://aistudio.google.com/app/apikey hoặc lấy key API có sẵn "AIzaSyBMcCtDTX32PQjbxIrbuh0NIcGLdZr7lKg"
+Để chạy chức năng AI cần phải có API Key của Google AI Studio, bạn có thể lấy API Key tại https://aistudio.google.com/app/apikey 
 ### Bước 1:
 Vào cài đặt bật chế độ Active the developer mode(with assets)
 
