@@ -1,4 +1,4 @@
-# Hướng dẫn cài đặt môi trường để chạy dự án DCV Introduce
+# Hướng dẫn cài đặt môi trường để chạy dự án 
 
 Làm theo các bước dưới đây để cài đặt môi trường và chạy dự án 
 
